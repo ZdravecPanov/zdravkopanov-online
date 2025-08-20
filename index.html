@@ -1,95 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zdravko Panov | Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
-      scroll-behavior: smooth;
-    }
-    header {
-      background: #0d2538;
-      color: #fff;
-      padding: 2rem 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      font-size: 1rem;
-      margin-top: 0.3rem;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #0d2538;
-      margin-top: 0;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 0.75rem;
-      text-align: left;
-    }
-    ul {
-      list-style: disc;
-      margin-left: 1.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #0d2538;
-      color: #fff;
-      margin-top: 2rem;
-    }
-    a {
-      color: #0d2538;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    /* Reset & base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; color: #333; background: #f5f5f5; line-height: 1.6; scroll-behavior: smooth; }
+
+    /* Navbar */
+    header { background: #0d2538; color: #fff; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-weight: 700; font-size: 1.8rem; }
+    nav a { color: #fff; margin-left: 1rem; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+    nav a:hover { color: #1abc9c; }
+
+    /* Hero Section */
+    .hero { background: linear-gradient(to right, #0d2538, #1a3d5d); color: #fff; padding: 6rem 2rem; text-align: center; }
+    .hero h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .hero p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+
+    /* Section styles */
+    section { max-width: 1000px; margin: 3rem auto; padding: 2rem; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    h2 { color: #0d2538; margin-bottom: 1rem; }
+    p { margin-bottom: 1rem; }
+
+    /* Skills & Projects cards */
+    .cards { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .card { background: #fefefe; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); flex: 1 1 250px; transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .card i { font-size: 1.5rem; color: #1abc9c; margin-bottom: 0.5rem; }
+
+    /* Contact */
+    .contact a { color: #0d2538; text-decoration: none; font-weight: 600; }
+    .contact a:hover { color: #1abc9c; }
+
+    /* Footer */
+    footer { text-align: center; padding: 1rem; background: #0d2538; color: #fff; margin-top: 2rem; }
+
+    /* Responsive */
+    @media(max-width:768px) { nav a { margin-left: 0.5rem; font-size: 0.9rem; } }
   </style>
 </head>
 <body>
   <header>
     <h1>Zdravko Panov</h1>
-    <p>System Administrator & Aspiring DevOps Engineer</p>
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -99,54 +58,56 @@
     </nav>
   </header>
 
+  <section class="hero">
+    <h2>System Administrator & Aspiring DevOps Engineer</h2>
+    <p>Linux, Automation, Cloud, Containerization & Infrastructure Management</p>
+  </section>
+
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m a System Administrator and DevOps enthusiast based in Stara Zagora, Bulgaria. I specialize in Linux administration, automation, and infrastructure management. Over time, I’ve developed hands-on experience with containerization (Docker), orchestration (Kubernetes), infrastructure as code (Terraform), and monitoring solutions such as Prometheus, Grafana, and the TICK stack.</p>
-    <p>I’m passionate about optimizing systems for performance, security, and reliability — and I’m committed to continuous learning in the DevOps space.</p>
+    <p>I’m a System Administrator and DevOps enthusiast based in Stara Zagora, Bulgaria. I specialize in Linux administration, automation, and infrastructure management. I have hands-on experience with containerization, orchestration, monitoring solutions, and infrastructure as code.</p>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
-    <table>
-      <tr><th>Category</th><th>Tools & Technologies</th></tr>
-      <tr><td>Operating Systems</td><td>Linux (Ubuntu, CentOS, Debian)</td></tr>
-      <tr><td>Containerization & Orchestration</td><td>Docker, Kubernetes</td></tr>
-      <tr><td>Infrastructure as Code</td><td>Terraform</td></tr>
-      <tr><td>CI/CD & Automation</td><td>GitHub Actions, shell scripting</td></tr>
-      <tr><td>Monitoring & Logging</td><td>Prometheus, Grafana, TICK Stack</td></tr>
-      <tr><td>Cloud & Virtualization</td><td>AWS basics (EC2, S3), VMware, Vagrant</td></tr>
-      <tr><td>Networking & Security</td><td>TCP/IP, firewalls, SSH, certificate management</td></tr>
-      <tr><td>Version Control</td><td>Git, GitHub</td></tr>
-    </table>
+    <div class="cards">
+      <div class="card"><i class="fas fa-server"></i><h3>Linux (Ubuntu, CentOS, Debian)</h3></div>
+      <div class="card"><i class="fas fa-cube"></i><h3>Docker & Kubernetes</h3></div>
+      <div class="card"><i class="fas fa-code"></i><h3>Bash & PowerShell</h3></div>
+      <div class="card"><i class="fas fa-tools"></i><h3>Terraform & Automation</h3></div>
+      <div class="card"><i class="fas fa-chart-line"></i><h3>Monitoring: Prometheus, Grafana, TICK Stack</h3></div>
+      <div class="card"><i class="fas fa-cloud"></i><h3>AWS basics</h3></div>
+      <div class="card"><i class="fas fa-network-wired"></i><h3>Networking & Security</h3></div>
+      <div class="card"><i class="fas fa-server"></i><h3>VMware & Virtualization</h3></div>
+      <div class="card"><i class="fas fa-code-branch"></i><h3>Git & GitHub</h3></div>
+    </div>
   </section>
 
   <section id="projects">
-    <h2>Projects / Portfolio</h2>
-    <ul>
-      <li><strong>Infrastructure Automation</strong> – Automated server provisioning and configuration using Terraform and shell scripts.</li>
-      <li><strong>Container Deployments</strong> – Created Docker Compose stacks for multi-container apps integrated with Prometheus + Grafana.</li>
-      <li><strong>Monitoring Setup</strong> – Deployed the TICK stack to collect, visualize, and alert on system metrics.</li>
-      <li><strong>Kubernetes Exploration</strong> – Built and tested clusters (Kind/Minikube) for orchestrating containerized applications.</li>
-      <li><strong>GitHub Repos</strong> – <a href="#">docker-setup</a>, <a href="#">monitoring-stack</a>, <a href="#">terraform-bootstrap</a></li>
-    </ul>
+    <h2>Projects</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-laptop-code"></i><h3>Infrastructure Automation</h3><p>Automated server provisioning using Terraform and shell scripts.</p></div>
+      <div class="card"><i class="fas fa-box"></i><h3>Docker Deployments</h3><p>Created Docker Compose stacks integrated with Prometheus + Grafana.</p></div>
+      <div class="card"><i class="fas fa-chart-pie"></i><h3>Monitoring Setup</h3><p>Deployed the TICK stack to collect, visualize, and alert on system metrics.</p></div>
+      <div class="card"><i class="fas fa-network-wired"></i><h3>Kubernetes Exploration</h3><p>Built clusters (Kind/Minikube) for orchestrating containerized applications.</p></div>
+    </div>
   </section>
 
   <section id="services">
     <h2>Services / Freelance Offers</h2>
-    <ul>
-      <li>Automated Deployments with Docker, Kubernetes, CI/CD pipelines</li>
-      <li>Infrastructure as Code with Terraform</li>
-      <li>Monitoring & Alerting (Prometheus, Grafana, TICK stack)</li>
-      <li>Linux Administration (hardening, tuning, firewall setup)</li>
-      <li>DevOps Consultation on workflows and best practices</li>
-    </ul>
+    <div class="cards">
+      <div class="card"><i class="fas fa-sync-alt"></i><h3>Automated Deployments</h3><p>Docker, Kubernetes, CI/CD pipelines</p></div>
+      <div class="card"><i class="fas fa-cogs"></i><h3>Infrastructure as Code</h3><p>Terraform & provisioning automation</p></div>
+      <div class="card"><i class="fas fa-chart-line"></i><h3>Monitoring & Alerting</h3><p>Prometheus, Grafana, TICK Stack</p></div>
+      <div class="card"><i class="fas fa-server"></i><h3>Linux Administration</h3><p>Hardening, tuning, firewall setup</p></div>
+    </div>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:zdravko.panov@gmail.com.com">zdravko.panov@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/zdravko-panov/" target="_blank">linkedin.com/in/zdravko-panov</a></p>
-    <p>GitHub: <a href="https://github.com/zdravkopanov" target="_blank">github.com/zdravkopanov</a></p>
+    <p class="contact">Email: <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a></p>
+    <p class="contact">LinkedIn: <a href="https://www.linkedin.com/in/zdravko-panov/" target="_blank">linkedin.com/in/zdravko-panov</a></p>
+    <p class="contact">GitHub: <a href="https://github.com/zdravkopanov" target="_blank">github.com/zdravkopanov</a></p>
   </section>
 
   <footer>
