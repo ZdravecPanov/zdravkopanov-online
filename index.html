@@ -1,118 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zdravko Panov | Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zdravko Panov | DevOps Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* Reset & base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; color: #333; background: #f5f5f5; line-height: 1.6; scroll-behavior: smooth; }
-
-    /* Navbar */
-    header { background: #0d2538; color: #fff; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; }
-    header h1 { font-weight: 700; font-size: 1.8rem; }
-    nav a { color: #fff; margin-left: 1rem; text-decoration: none; font-weight: 600; transition: color 0.3s; }
-    nav a:hover { color: #1abc9c; }
-
-    /* Hero Section */
-    .hero { background: linear-gradient(to right, #0d2538, #1a3d5d); color: #fff; padding: 6rem 2rem; text-align: center; }
-    .hero h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    .hero p { font-size: 1.2rem; margin-bottom: 1.5rem; }
-
-    /* Section styles */
-    section { max-width: 1000px; margin: 3rem auto; padding: 2rem; background: #fff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    h2 { color: #0d2538; margin-bottom: 1rem; }
-    p { margin-bottom: 1rem; }
-
-    /* Skills & Projects cards */
-    .cards { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
-    .card { background: #fefefe; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); flex: 1 1 250px; transition: transform 0.3s, box-shadow 0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-    .card i { font-size: 1.5rem; color: #1abc9c; margin-bottom: 0.5rem; }
-
-    /* Contact */
-    .contact a { color: #0d2538; text-decoration: none; font-weight: 600; }
-    .contact a:hover { color: #1abc9c; }
-
-    /* Footer */
-    footer { text-align: center; padding: 1rem; background: #0d2538; color: #fff; margin-top: 2rem; }
-
-    /* Responsive */
-    @media(max-width:768px) { nav a { margin-left: 0.5rem; font-size: 0.9rem; } }
+    :root {
+      --primary: #25365C;
+      --accent: #497cf6;
+      --background: #fff;
+      --text: #222;
+      --card-bg: #f4f5fa;
+      --border: #e7e9ed;
+      --section-gap: 68px;
+      --radius: 16px;
+    }
+    body {
+      background: var(--background);
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--text);
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      min-height: 375px;
+      background: linear-gradient(-80deg, var(--primary) 55%, var(--accent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .wave {
+      position: absolute;
+      width: 100%;
+      height: 120px;
+      bottom: -1px; left:0; right: 0;
+      z-index: 0;
+    }
+    nav {
+      position: absolute;
+      top: 34px;
+      right: 54px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 32px;
+      font-weight: 500;
+      font-size: 1.08rem;
+      letter-spacing: 0.04rem;
+      opacity: 0.8;
+      transition: opacity 0.2s, color 0.2s;
+      padding: 3px 0;
+      border-bottom: 2px solid transparent;
+    }
+    nav a.active, nav a:hover {
+      opacity: 1;
+      color: #ffde59;
+      border-bottom: 2px solid #ffde59;
+    }
+    .hero-content {
+      z-index: 2;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .hero-title {
+      font-size: 2.7rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+    }
+    .hero-sub {
+      font-size: 1.13rem;
+      font-weight: 400;
+      margin-bottom: 27px;
+      opacity: 0.93;
+    }
+    .cta-btn {
+      background: #ffde59;
+      color: #222;
+      border: none;
+      border-radius: 22px;
+      padding: 12px 32px;
+      font-size: 1.06rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(80,132,255,0.08);
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .cta-btn:hover { background: #25365C; color: #ffde59; }
+    main { max-width: 1140px; margin: var(--section-gap) auto 0 auto; padding: 0 22px; }
+    section { margin-bottom: var(--section-gap); }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      letter-spacing: 0.03em;
+      position: relative;
+      display: inline-block;
+    }
+    .divider { height: 3px; background: linear-gradient(80deg, #e7e9ed, #25365c35); width: 90px; margin: 20px 0 20px 0; border-radius: 3px; }
+    .info-list { 
+      display: flex; 
+      gap: 24px; 
+      flex-wrap: wrap; 
+      list-style: none; 
+      padding: 0; 
+      margin: 0 0 24px 0;
+    }
+    .info-list li {
+      display: flex; 
+      align-items: center; 
+      font-size: 1.07rem; 
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 9px 22px;
+      box-shadow: 0 2px 14px rgba(60,90,180,0.04);
+      gap: 8px;
+    }
+    .info-list i { font-size: 1.16em; color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 16px rgba(80,132,255,0.07);
+      padding: 24px 22px 21px 22px;
+      transition: box-shadow 0.22s;
+      position: relative;
+      min-height: 154px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .project-card:hover { box-shadow: 0 10px 36px rgba(80,132,255,0.16); }
+    .project-title { font-weight: bold; margin-bottom: 8px; color: var(--primary); }
+    .project-desc { font-size: 1.05rem; margin-bottom: 19px; opacity: 0.96; color: #26346b; }
+    .project-links a { color: var(--accent); margin-right: 12px; text-decoration: none; font-weight: bold; transition: color 0.17s; }
+    .project-links a:hover { color: #ffde59; }
+    .contact-links { margin-top: 10px; }
+    .contact-links a { color: var(--accent); text-decoration: none; margin-right: 22px; font-size: 1.4rem; vertical-align: middle; transition: color 0.2s; }
+    .contact-links a:hover { color: #ffde59; }
+    footer { text-align: center; color: #aaa; margin: 40px 0 10px 0; font-size: 0.96em; }
+    /* CV modal */
+    #cvModal {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index:1000;
+    }
+    #cvModal iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 12px;
+    }
+    @media (max-width: 700px) {
+      nav { right: 18px; }
+      .hero-title { font-size: 2rem; }
+      .section-title { font-size: 1.28rem; }
+      main { padding: 0 6px; }
+      .info-list { gap: 10px; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Zdravko Panov</h1>
     <nav>
-      <a href="#about">About</a>
+      <a href="#about" class="active">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#cv">CV</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="hero-content">
+      <div class="hero-title">Zdravko Panov</div>
+      <div class="hero-sub">System Administrator & Aspiring DevOps Engineer</div>
+      <a href="#contact" class="cta-btn">Contact Me</a>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 155"><path fill="#fff" fill-opacity="1" d="M0,66L40,85.3C80,105,160,144,240,144C320,144,400,105,480,90.7C560,77,640,107,720,117.3C800,128,880,117,960,106.7C1040,96,1120,86,1200,90.7C1280,96,1360,117,1400,128L1440,139L1440,155L1400,155C1360,155,1280,155,1200,155C1120,155,1040,155,960,155C880,155,800,155,720,155C640,155,560,155,480,155C400,155,320,155,240,155C160,155,80,155,40,155L0,155Z"></path></svg>
   </header>
 
-  <section class="hero">
-    <h2>System Administrator & Aspiring DevOps Engineer</h2>
-    <p>Linux, Automation, Cloud, Containerization & Infrastructure Management</p>
-  </section>
+  <main>
+    <section id="about">
+      <div class="section-title">About Me</div>
+      <div class="divider"></div>
+      <p>I’m a System Administrator and DevOps enthusiast based in Stara Zagora, Bulgaria. I specialize in Linux administration, automation, and infrastructure management. I have hands-on experience with containerization, orchestration, monitoring solutions, and infrastructure as code.</p>
+    </section>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m a System Administrator and DevOps enthusiast based in Stara Zagora, Bulgaria. I specialize in Linux administration, automation, and infrastructure management. I have hands-on experience with containerization, orchestration, monitoring solutions, and infrastructure as code.</p>
-  </section>
+    <section id="skills">
+      <div class="section-title">Skills</div>
+      <div class="divider"></div>
+      <ul class="info-list">
+        <li><i class="fab fa-linux"></i>Linux (Ubuntu, CentOS, Debian) – Intermediate</li>
+        <li><i class="fab fa-docker"></i>Docker – Containerization & Compose stacks</li>
+        <li><i class="fab fa-kubernetes"></i>Kubernetes – Currently learning cluster orchestration</li>
+        <li><i class="fas fa-terminal"></i>Bash & PowerShell – Intermediate scripting</li>
+        <li><i class="fas fa-code"></i>Terraform & Automation – Infrastructure as Code</li>
+        <li><i class="fas fa-chart-line"></i>Monitoring (Prometheus, Grafana, TICK Stack)</li>
+        <li><i class="fas fa-cloud"></i>AWS & Azure Basics – Currently learning cloud automation</li>
+        <li><i class="fas fa-network-wired"></i>Networking & Security – Firewalls, routing, VPN</li>
+        <li><i class="fas fa-server"></i>VMware, Hyper-V, vCenter – Virtualization platforms</li>
+        <li><i class="fab fa-git-alt"></i>Git & GitHub – Version control and collaboration</li>
+      </ul>
+    </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="cards">
-      <div class="card"><i class="fas fa-server"></i><h3>Linux (Ubuntu, CentOS, Debian)</h3></div>
-      <div class="card"><i class="fas fa-cube"></i><h3>Docker & Kubernetes</h3></div>
-      <div class="card"><i class="fas fa-code"></i><h3>Bash & PowerShell</h3></div>
-      <div class="card"><i class="fas fa-tools"></i><h3>Terraform & Automation</h3></div>
-      <div class="card"><i class="fas fa-chart-line"></i><h3>Monitoring: Prometheus, Grafana, TICK Stack</h3></div>
-      <div class="card"><i class="fas fa-cloud"></i><h3>AWS basics</h3></div>
-      <div class="card"><i class="fas fa-network-wired"></i><h3>Networking & Security</h3></div>
-      <div class="card"><i class="fas fa-server"></i><h3>VMware & Virtualization</h3></div>
-      <div class="card"><i class="fas fa-code-branch"></i><h3>Git & GitHub</h3></div>
-    </div>
-  </section>
+    <section id="projects">
+      <div class="section-title">Projects</div>
+      <div class="divider"></div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-title">Infrastructure Automation</div>
+          <div class="project-desc">Automated server provisioning using Terraform and shell scripts.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Docker Deployments</div>
+          <div class="project-desc">Created Docker Compose stacks integrated with Prometheus + Grafana.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Monitoring Setup</div>
+          <div class="project-desc">Deployed the TICK stack to collect, visualize, and alert on system metrics.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Kubernetes Exploration</div>
+          <div class="project-desc">Built clusters (Kind/Minikube) for orchestrating containerized applications.</div>
+        </div>
+      </div>
+    </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="cards">
-      <div class="card"><i class="fas fa-laptop-code"></i><h3>Infrastructure Automation</h3><p>Automated server provisioning using Terraform and shell scripts.</p></div>
-      <div class="card"><i class="fas fa-box"></i><h3>Docker Deployments</h3><p>Created Docker Compose stacks integrated with Prometheus + Grafana.</p></div>
-      <div class="card"><i class="fas fa-chart-pie"></i><h3>Monitoring Setup</h3><p>Deployed the TICK stack to collect, visualize, and alert on system metrics.</p></div>
-      <div class="card"><i class="fas fa-network-wired"></i><h3>Kubernetes Exploration</h3><p>Built clusters (Kind/Minikube) for orchestrating containerized applications.</p></div>
-    </div>
-  </section>
+    <section id="cv">
+      <div class="section-title">Curriculum Vitae</div>
+      <div class="divider"></div>
+      <p>Want to see my full professional experience and skills? View my CV below.</p>
+      <button id="cvBtn" class="cta-btn">View CV</button>
+      <div id="cvModal">
+        <div style="position:relative; width:90%; max-width:900px; background:#fff; border-radius:12px; padding:16px;">
+          <span id="closeCV" style="position:absolute; top:8px; right:12px; font-size:24px; cursor:pointer;">&times;</span>
+          <iframe src="Zdravko_Panov_CV.pdf"></iframe>
+        </div>
+      </div>
+    </section>
 
-  <section id="services">
-    <h2>Services / Freelance Offers</h2>
-    <div class="cards">
-      <div class="card"><i class="fas fa-sync-alt"></i><h3>Automated Deployments</h3><p>Docker, Kubernetes, CI/CD pipelines</p></div>
-      <div class="card"><i class="fas fa-cogs"></i><h3>Infrastructure as Code</h3><p>Terraform & provisioning automation</p></div>
-      <div class="card"><i class="fas fa-chart-line"></i><h3>Monitoring & Alerting</h3><p>Prometheus, Grafana, TICK Stack</p></div>
-      <div class="card"><i class="fas fa-server"></i><h3>Linux Administration</h3><p>Hardening, tuning, firewall setup</p></div>
-    </div>
-  </section>
+    <section id="services">
+      <div class="section-title">Services</div>
+      <div class="divider"></div>
+      <ul class="info-list">
+        <li><i class="fas fa-robot"></i>Automated Deployments (Docker, Kubernetes, CI/CD)</li>
+        <li><i class="fas fa-code-branch"></i>Infrastructure as Code (Terraform)</li>
+        <li><i class="fas fa-bell"></i>Monitoring & Alerting (Prometheus, Grafana, TICK Stack)</li>
+        <li><i class="fas fa-linux"></i>Linux Administration (Hardening, tuning, firewall setup)</li>
+      </ul>
+    </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p class="contact">Email: <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a></p>
-    <p class="contact">LinkedIn: <a href="https://www.linkedin.com/in/zdravko-panov/" target="_blank">linkedin.com/in/zdravko-panov</a></p>
-    <p class="contact">GitHub: <a href="https://github.com/zdravkopanov" target="_blank">github.com/zdravkopanov</a></p>
-  </section>
+    <section id="contact">
+      <div class="section-title">Contact</div>
+      <div class="divider"></div>
+      <p>Email: <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a></p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/zdravko-panov" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/zdravkopanov" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="mailto:zdravko.panov@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Zdravko Panov. All rights reserved.</p>
+    &copy; 2025 Zdravko Panov. All rights reserved.
   </footer>
+
+  <script>
+    // Scrollspy for nav
+    document.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('main section');
+      const navLinks = document.querySelectorAll('nav a');
+      let activeIdx = 0;
+      sections.forEach((sec,i)=>{
+        if(window.scrollY + 160 >= sec.offsetTop) activeIdx = i;
+      });
+      navLinks.forEach((l,i)=>l.classList.toggle('active', i===activeIdx));
+    });
+
+    // CV modal
+    const cvBtn = document.getElementById('cvBtn');
+    const cvModal = document.getElementById('cvModal');
+    const closeCV = document.getElementById('closeCV');
+
+    cvBtn.addEventListener('click', () => cvModal.style.display='flex');
+    closeCV.addEventListener('click', () => cvModal.style.display='none');
+    window.addEventListener('click', (e) => { if(e.target===cvModal) cvModal.style.display='none'; });
+  </script>
 </body>
 </html>
 
