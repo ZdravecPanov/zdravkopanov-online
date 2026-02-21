@@ -6,178 +6,7 @@
   <title>Zdravko Panov | DevOps Portfolio</title>
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #25365C;
-      --accent: #497cf6;
-      --background: #fff;
-      --text: #222;
-      --card-bg: #f4f5fa;
-      --border: #e7e9ed;
-      --section-gap: 68px;
-      --radius: 16px;
-    }
-    body {
-      background: var(--background);
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--text);
-      margin: 0;
-      transition: background 0.3s, color 0.3s;
-    }
-    header {
-      min-height: 375px;
-      background: linear-gradient(-80deg, var(--primary) 55%, var(--accent) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .wave {
-      position: absolute;
-      width: 100%;
-      height: 120px;
-      bottom: -1px; left:0; right: 0;
-      z-index: 0;
-    }
-    nav {
-      position: absolute;
-      top: 34px;
-      right: 54px;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 32px;
-      font-weight: 500;
-      font-size: 1.08rem;
-      letter-spacing: 0.04rem;
-      opacity: 0.8;
-      transition: opacity 0.2s, color 0.2s;
-      padding: 3px 0;
-      border-bottom: 2px solid transparent;
-    }
-    nav a.active, nav a:hover {
-      opacity: 1;
-      color: #ffde59;
-      border-bottom: 2px solid #ffde59;
-    }
-    .hero-content {
-      z-index: 2;
-      text-align: center;
-      margin-top: 48px;
-    }
-    .hero-title {
-      font-size: 2.7rem;
-      font-weight: 700;
-      margin-bottom: 14px;
-      letter-spacing: 0.03em;
-    }
-    .hero-sub {
-      font-size: 1.13rem;
-      font-weight: 400;
-      margin-bottom: 27px;
-      opacity: 0.93;
-    }
-    .cta-btn {
-      background: #ffde59;
-      color: #222;
-      border: none;
-      border-radius: 22px;
-      padding: 12px 32px;
-      font-size: 1.06rem;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 2px 12px rgba(80,132,255,0.08);
-      transition: background 0.2s, color 0.2s;
-      cursor: pointer;
-    }
-    .cta-btn:hover { background: #25365C; color: #ffde59; }
-    main { max-width: 1140px; margin: var(--section-gap) auto 0 auto; padding: 0 22px; }
-    section { margin-bottom: var(--section-gap); }
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 20px;
-      letter-spacing: 0.03em;
-      position: relative;
-      display: inline-block;
-    }
-    .divider { height: 3px; background: linear-gradient(80deg, #e7e9ed, #25365c35); width: 90px; margin: 20px 0 20px 0; border-radius: 3px; }
-    .info-list { 
-      display: flex; 
-      gap: 24px; 
-      flex-wrap: wrap; 
-      list-style: none; 
-      padding: 0; 
-      margin: 0 0 24px 0;
-    }
-    .info-list li {
-      display: flex; 
-      align-items: center; 
-      font-size: 1.07rem; 
-      background: var(--card-bg);
-      border-radius: 28px;
-      padding: 9px 22px;
-      box-shadow: 0 2px 14px rgba(60,90,180,0.04);
-      gap: 8px;
-    }
-    .info-list i { font-size: 1.16em; color: var(--accent); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .project-card {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: 0 2px 16px rgba(80,132,255,0.07);
-      padding: 24px 22px 21px 22px;
-      transition: box-shadow 0.22s;
-      position: relative;
-      min-height: 154px;
-      cursor: pointer;
-      overflow: hidden;
-    }
-    .project-card:hover { box-shadow: 0 10px 36px rgba(80,132,255,0.16); }
-    .project-title { font-weight: bold; margin-bottom: 8px; color: var(--primary); }
-    .project-desc { font-size: 1.05rem; margin-bottom: 19px; opacity: 0.96; color: #26346b; }
-    .project-links a { color: var(--accent); margin-right: 12px; text-decoration: none; font-weight: bold; transition: color 0.17s; }
-    .project-links a:hover { color: #ffde59; }
-    .contact-links { margin-top: 10px; }
-    .contact-links a { color: var(--accent); text-decoration: none; margin-right: 22px; font-size: 1.4rem; vertical-align: middle; transition: color 0.2s; }
-    .contact-links a:hover { color: #ffde59; }
-    footer { text-align: center; color: #aaa; margin: 40px 0 10px 0; font-size: 0.96em; }
-    /* CV modal */
-    #cvModal {
-      display: none;
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index:1000;
-    }
-    #cvModal iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-      border-radius: 12px;
-    }
-    @media (max-width: 700px) {
-      nav { right: 18px; }
-      .hero-title { font-size: 2rem; }
-      .section-title { font-size: 1.28rem; }
-      main { padding: 0 6px; }
-      .info-list { gap: 10px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
@@ -185,6 +14,7 @@
       <a href="#about" class="active">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="#cv">CV</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
@@ -224,24 +54,90 @@
     <section id="projects">
       <div class="section-title">Projects</div>
       <div class="divider"></div>
+      <p class="section-note">Project links and outcomes are placeholders. Replace with real repositories and metrics when available.</p>
       <div class="projects-grid">
         <div class="project-card">
           <div class="project-title">Infrastructure Automation</div>
-          <div class="project-desc">Automated server provisioning using Terraform and shell scripts.</div>
+          <div class="project-desc">Built reusable Terraform modules and shell automation to deliver consistent environments with repeatable, idempotent provisioning.</div>
+          <div class="project-tech">Tech: Terraform, Bash, Ansible, Linux</div>
+          <div class="project-outcome">Outcome: TBD (e.g., reduced provisioning time from 2h to 20m, standardizing 20+ services).</div>
+          <div class="project-links">
+            <a href="https://example.com/infra-automation" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/infra-automation/demo" target="_blank" rel="noopener noreferrer" title="Demo">Demo</a>
+          </div>
         </div>
         <div class="project-card">
           <div class="project-title">Docker Deployments</div>
-          <div class="project-desc">Created Docker Compose stacks integrated with Prometheus + Grafana.</div>
+          <div class="project-desc">Designed Docker Compose stacks with health checks, logging, and Prometheus + Grafana observability baked in.</div>
+          <div class="project-tech">Tech: Docker, Compose, Prometheus, Grafana</div>
+          <div class="project-outcome">Outcome: TBD (e.g., improved deployment consistency and reduced manual steps by 60%).</div>
+          <div class="project-links">
+            <a href="https://example.com/docker-deployments" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/docker-deployments/demo" target="_blank" rel="noopener noreferrer" title="Demo">Demo</a>
+          </div>
         </div>
         <div class="project-card">
           <div class="project-title">Monitoring Setup</div>
-          <div class="project-desc">Deployed the TICK stack to collect, visualize, and alert on system metrics.</div>
+          <div class="project-desc">Built a full monitoring and alerting stack with service-level dashboards, SLO-style alerts, and log correlation for faster incident triage.</div>
+          <div class="project-tech">Tech: Prometheus, Alertmanager, Grafana, Loki</div>
+          <div class="project-outcome">Outcome: TBD (e.g., reduced alert noise by 40% and cut MTTR by 25%).</div>
+          <div class="project-links">
+            <a href="https://example.com/monitoring-stack" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/monitoring-stack/case-study" target="_blank" rel="noopener noreferrer" title="Case Study">Case Study</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Monitoring Setup (Zabbix + Grafana)</div>
+          <div class="project-desc">Integrated Zabbix with Grafana to centralize infrastructure metrics, visualize health, and trigger on-call alerts for critical services.</div>
+          <div class="project-tech">Tech: Zabbix, Grafana, Linux, Alerting</div>
+          <div class="project-outcome">Outcome: TBD (e.g., consolidated monitoring for 50+ hosts and improved alert response time).</div>
+          <div class="project-links">
+            <a href="https://example.com/zabbix-grafana" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/zabbix-grafana/runbook" target="_blank" rel="noopener noreferrer" title="Runbook">Runbook</a>
+          </div>
         </div>
         <div class="project-card">
           <div class="project-title">Kubernetes Exploration</div>
-          <div class="project-desc">Built clusters (Kind/Minikube) for orchestrating containerized applications.</div>
+          <div class="project-desc">Built Kind and Minikube clusters to practice workloads, service discovery, and deployment workflows.</div>
+          <div class="project-tech">Tech: Kubernetes, Helm, Kind, Minikube</div>
+          <div class="project-outcome">Outcome: TBD (e.g., deployed 10+ sample services with Helm and learned rolling strategies).</div>
+          <div class="project-links">
+            <a href="https://example.com/k8s-labs" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/k8s-labs/notes" target="_blank" rel="noopener noreferrer" title="Notes">Notes</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">CI/CD Pipeline Template</div>
+          <div class="project-desc">Created a GitHub Actions pipeline with linting, container builds, and staged deployments to a test environment.</div>
+          <div class="project-tech">Tech: GitHub Actions, Docker, Bash</div>
+          <div class="project-outcome">Outcome: TBD (e.g., automated releases and reduced manual deploys to near zero).</div>
+          <div class="project-links">
+            <a href="https://example.com/cicd-template" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/cicd-template/docs" target="_blank" rel="noopener noreferrer" title="Docs">Docs</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Backup and Restore Automation</div>
+          <div class="project-desc">Implemented automated backups with verification and restore drills for critical services.</div>
+          <div class="project-tech">Tech: Bash, Cron, rsync, Linux</div>
+          <div class="project-outcome">Outcome: TBD (e.g., reduced RPO to under 15 minutes and validated restore steps).</div>
+          <div class="project-links">
+            <a href="https://example.com/backup-automation" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
+            <a href="https://example.com/backup-automation/runbook" target="_blank" rel="noopener noreferrer" title="Runbook">Runbook</a>
+          </div>
         </div>
       </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="section-title">Roadmap</div>
+      <div class="divider"></div>
+      <ul class="info-list">
+        <li><i class="fas fa-check-circle"></i>Publish 1–2 case studies with diagrams and outcomes</li>
+        <li><i class="fas fa-check-circle"></i>Ship Terraform module registry with usage docs</li>
+        <li><i class="fas fa-check-circle"></i>Add CI/CD demo with GitHub Actions + Docker</li>
+        <li><i class="fas fa-check-circle"></i>Improve site performance and accessibility audit</li>
+      </ul>
     </section>
 
     <section id="cv">
@@ -273,8 +169,8 @@
       <div class="divider"></div>
       <p>Email: <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a></p>
       <div class="contact-links">
-        <a href="https://linkedin.com/in/zdravko-panov" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/zdravkopanov" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/zdravko-panov" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/zdravkopanov" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
         <a href="mailto:zdravko.panov@example.com" title="Email"><i class="fas fa-envelope"></i></a>
       </div>
     </section>
@@ -283,28 +179,6 @@
   <footer>
     &copy; 2025 Zdravko Panov. All rights reserved.
   </footer>
-
-  <script>
-    // Scrollspy for nav
-    document.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('main section');
-      const navLinks = document.querySelectorAll('nav a');
-      let activeIdx = 0;
-      sections.forEach((sec,i)=>{
-        if(window.scrollY + 160 >= sec.offsetTop) activeIdx = i;
-      });
-      navLinks.forEach((l,i)=>l.classList.toggle('active', i===activeIdx));
-    });
-
-    // CV modal
-    const cvBtn = document.getElementById('cvBtn');
-    const cvModal = document.getElementById('cvModal');
-    const closeCV = document.getElementById('closeCV');
-
-    cvBtn.addEventListener('click', () => cvModal.style.display='flex');
-    closeCV.addEventListener('click', () => cvModal.style.display='none');
-    window.addEventListener('click', (e) => { if(e.target===cvModal) cvModal.style.display='none'; });
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
-
