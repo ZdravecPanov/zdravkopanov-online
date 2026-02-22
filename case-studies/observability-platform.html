@@ -77,6 +77,27 @@ Dashboards + SLA Reports
     </section>
 
     <section class="case-section">
+      <h2>Dashboard Walkthrough</h2>
+      <ul>
+        <li><strong>Overview:</strong> Top-level SLO health, active alerts, and current incident count.</li>
+        <li><strong>Latency:</strong> P50/P95 response times to identify user impact and spikes.</li>
+        <li><strong>Error Rate:</strong> 4xx/5xx trends for regression detection after deploys.</li>
+        <li><strong>Host Health:</strong> CPU, memory, disk pressure, and network saturation per host group.</li>
+        <li><strong>Database:</strong> query latency, connection count, and replication lag.</li>
+        <li><strong>Queues:</strong> backlog depth and processing rate to spot stuck workers.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Alert Example</h2>
+      <ul>
+        <li><strong>Threshold:</strong> API error rate &gt; 2% for 5 minutes.</li>
+        <li><strong>Trigger:</strong> Zabbix fires a critical alert when the rolling error rate breaches threshold.</li>
+        <li><strong>Response:</strong> On-call checks Grafana error panel, rolls back the last deploy, and validates recovery.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
       <h2>Incident Response Runbook (Example)</h2>
       <ol>
         <li><strong>Alert received:</strong> Critical trigger fires (CPU saturation or service down).</li>
@@ -84,6 +105,11 @@ Dashboards + SLA Reports
         <li><strong>Escalation:</strong> Page service owner if SLA is at risk or incident persists >15 minutes.</li>
         <li><strong>Resolution:</strong> Apply mitigation, validate recovery, close alert with notes.</li>
       </ol>
+    </section>
+
+    <section class="case-section">
+      <h2>Incident Story</h2>
+      <p>Zabbix triggered a critical alert for elevated latency on the checkout service during peak traffic. Grafana dashboards showed CPU saturation and a sharp rise in database wait time. The on-call engineer scaled the database read replicas and restarted a stuck worker queue, restoring normal latency within 20 minutes. A follow-up action adjusted alert thresholds and added a dashboard panel to track queue depth.</p>
     </section>
 
     <section class="case-section">
@@ -108,10 +134,9 @@ Dashboards + SLA Reports
       <h2>Metrics</h2>
       <ul>
         <li>Hosts monitored: 58 Linux/VM nodes across prod and staging.</li>
-        <li>Metrics collected: ~12,000 time series at steady state.</li>
-        <li>Alert rules: 110 total (14 critical, 38 warning, 58 informational).</li>
-        <li>MTTR improved from ~45 minutes to ~25 minutes (≈44% faster).</li>
-        <li>Dashboard usage: ~35 weekly active viewers across ops and dev.</li>
+        <li>Services monitored: 12 critical services (API, DB, queues, edge).</li>
+        <li>Alert categories: availability, latency, capacity, error rate, and backup health.</li>
+        <li>Typical incidents: disk saturation, noisy neighbors, slow DB queries, and queue backlogs.</li>
       </ul>
       <p class="case-metrics-note">Suggested validation sources: Zabbix alert history, Grafana dashboards, incident reports.</p>
     </section>
