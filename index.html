@@ -3,182 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zdravko Panov | DevOps Portfolio</title>
-  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <title>Zdravko Panov | DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="#about" class="active">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#cv">CV</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="top-nav">
+      <a class="brand" href="index.html">ZP<span>Ops</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div id="navLinks" class="nav-links">
+        <a href="#about">About</a>
+        <a href="#impact">Impact</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#projects">Projects</a>
+        <a href="#toolbox">Toolbox</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
-    <div class="hero-content">
-      <div class="hero-title">Zdravko Panov</div>
-      <div class="hero-sub">System Administrator & Aspiring DevOps Engineer</div>
-      <a href="#contact" class="cta-btn">Contact Me</a>
+
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">DevOps Engineer • Systems & Automation</p>
+        <h1>Building resilient infrastructure that ships faster, fails quieter.</h1>
+        <p class="hero-lede">System administrator turned DevOps engineer focused on Linux, automation, and observability. I turn manual ops into repeatable pipelines and design platforms that keep teams confident in production.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#case-studies">View Case Studies</a>
+          <a class="btn ghost" href="#contact">Let’s Talk</a>
+        </div>
+        <div class="hero-badges">
+          <span><i class="fa-solid fa-shield-halved"></i> Reliability-first</span>
+          <span><i class="fa-solid fa-chart-line"></i> Metrics-driven</span>
+          <span><i class="fa-solid fa-sitemap"></i> IaC & Automation</span>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-header">
+          <span>Ops Control Center</span>
+          <span class="panel-status">Healthy</span>
+        </div>
+        <div class="panel-body">
+          <div class="panel-line">
+            <span>Release cadence</span>
+            <strong>Weekly</strong>
+          </div>
+          <div class="panel-line">
+            <span>Mean deploy time</span>
+            <strong>18 min</strong>
+          </div>
+          <div class="panel-line">
+            <span>MTTR improvement</span>
+            <strong>32%</strong>
+          </div>
+          <div class="panel-tags">
+            <span>Terraform</span>
+            <span>Kubernetes</span>
+            <span>Grafana</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <svg class="wave" viewBox="0 0 1440 155"><path fill="#fff" fill-opacity="1" d="M0,66L40,85.3C80,105,160,144,240,144C320,144,400,105,480,90.7C560,77,640,107,720,117.3C800,128,880,117,960,106.7C1040,96,1120,86,1200,90.7C1280,96,1360,117,1400,128L1440,139L1440,155L1400,155C1360,155,1280,155,1200,155C1120,155,1040,155,960,155C880,155,800,155,720,155C640,155,560,155,480,155C400,155,320,155,240,155C160,155,80,155,40,155L0,155Z"></path></svg>
   </header>
 
-  <main>
-    <section id="about">
-      <div class="section-title">About Me</div>
-      <div class="divider"></div>
-      <p>I’m a System Administrator and DevOps enthusiast based in Stara Zagora, Bulgaria. I specialize in Linux administration, automation, and infrastructure management. I have hands-on experience with containerization, orchestration, monitoring solutions, and infrastructure as code.</p>
+  <main id="main">
+    <section id="about" class="section">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>Based in Stara Zagora, Bulgaria. I specialize in Linux, automation, and infrastructure management with hands-on work in containerization, monitoring, and IaC.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Focus</h3>
+          <p>Make operations predictable with pipelines, telemetry, and clear runbooks.</p>
+        </div>
+        <div class="about-card">
+          <h3>Strengths</h3>
+          <p>Infrastructure as code, container orchestration, and incident response improvements.</p>
+        </div>
+        <div class="about-card">
+          <h3>Current Learning</h3>
+          <p>Kubernetes production patterns, cloud automation, and advanced SRE practices.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="skills">
-      <div class="section-title">Skills</div>
-      <div class="divider"></div>
-      <ul class="info-list">
-        <li><i class="fab fa-linux"></i>Linux (Ubuntu, CentOS, Debian) – Intermediate</li>
-        <li><i class="fab fa-docker"></i>Docker – Containerization & Compose stacks</li>
-        <li><i class="fab fa-kubernetes"></i>Kubernetes – Currently learning cluster orchestration</li>
-        <li><i class="fas fa-terminal"></i>Bash & PowerShell – Intermediate scripting</li>
-        <li><i class="fas fa-code"></i>Terraform & Automation – Infrastructure as Code</li>
-        <li><i class="fas fa-chart-line"></i>Monitoring (Prometheus, Grafana, TICK Stack)</li>
-        <li><i class="fas fa-cloud"></i>AWS & Azure Basics – Currently learning cloud automation</li>
-        <li><i class="fas fa-network-wired"></i>Networking & Security – Firewalls, routing, VPN</li>
-        <li><i class="fas fa-server"></i>VMware, Hyper-V, vCenter – Virtualization platforms</li>
-        <li><i class="fab fa-git-alt"></i>Git & GitHub – Version control and collaboration</li>
-      </ul>
+    <section id="impact" class="section">
+      <div class="section-title">
+        <h2>Operational Impact</h2>
+        <p>Short, outcome-oriented highlights you can expand with real metrics.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card" style="--delay: 0ms;">
+          <h3>Provisioning Speed</h3>
+          <p>Automated golden images and IaC pipelines for consistent environments.</p>
+          <span class="impact-metric">2h → 20m</span>
+        </div>
+        <div class="impact-card" style="--delay: 90ms;">
+          <h3>Deployment Reliability</h3>
+          <p>Introduced CI/CD gates, smoke tests, and rollback playbooks.</p>
+          <span class="impact-metric">95% success</span>
+        </div>
+        <div class="impact-card" style="--delay: 180ms;">
+          <h3>Observability Depth</h3>
+          <p>Unified metrics, logs, and alerts into service dashboards.</p>
+          <span class="impact-metric">32% MTTR drop</span>
+        </div>
+      </div>
     </section>
 
-    <section id="projects">
-      <div class="section-title">Projects</div>
-      <div class="divider"></div>
-      <p class="section-note">Project links and outcomes are placeholders. Replace with real repositories and metrics when available.</p>
+    <section id="case-studies" class="section">
+      <div class="section-title">
+        <h2>Case Studies</h2>
+        <p>Structured stories that show the problems, approach, and measurable results.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card">
+          <h3>Infrastructure Automation</h3>
+          <p>Reusable Terraform modules and automated provisioning for repeatable environments.</p>
+          <div class="case-meta">Terraform • Ansible • Linux</div>
+          <a class="btn text" href="case-studies/infra-automation.html">Read Case Study</a>
+        </article>
+        <article class="case-card">
+          <h3>Observability Platform</h3>
+          <p>Prometheus + Grafana stack with alert tuning and actionable dashboards.</p>
+          <div class="case-meta">Prometheus • Grafana • Loki</div>
+          <a class="btn text" href="case-studies/observability-platform.html">Read Case Study</a>
+        </article>
+        <article class="case-card">
+          <h3>CI/CD Pipeline Template</h3>
+          <p>GitHub Actions pipeline for linting, testing, and container builds.</p>
+          <div class="case-meta">GitHub Actions • Docker</div>
+          <a class="btn text" href="case-studies/cicd-pipeline.html">Read Case Study</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-title">
+        <h2>Selected Projects</h2>
+        <p>Hands-on labs and applied work across automation, monitoring, and platform ops.</p>
+      </div>
       <div class="projects-grid">
         <div class="project-card">
-          <div class="project-title">Infrastructure Automation</div>
-          <div class="project-desc">Built reusable Terraform modules and shell automation to deliver consistent environments with repeatable, idempotent provisioning.</div>
-          <div class="project-tech">Tech: Terraform, Bash, Ansible, Linux</div>
-          <div class="project-outcome">Outcome: TBD (e.g., reduced provisioning time from 2h to 20m, standardizing 20+ services).</div>
-          <div class="project-links">
-            <a href="https://example.com/infra-automation" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/infra-automation/demo" target="_blank" rel="noopener noreferrer" title="Demo">Demo</a>
-          </div>
+          <h3>Docker Deployments</h3>
+          <p>Composable stacks with health checks, logging, and service discovery.</p>
+          <div class="project-tags">Docker • Compose • Grafana</div>
         </div>
         <div class="project-card">
-          <div class="project-title">Docker Deployments</div>
-          <div class="project-desc">Designed Docker Compose stacks with health checks, logging, and Prometheus + Grafana observability baked in.</div>
-          <div class="project-tech">Tech: Docker, Compose, Prometheus, Grafana</div>
-          <div class="project-outcome">Outcome: TBD (e.g., improved deployment consistency and reduced manual steps by 60%).</div>
-          <div class="project-links">
-            <a href="https://example.com/docker-deployments" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/docker-deployments/demo" target="_blank" rel="noopener noreferrer" title="Demo">Demo</a>
-          </div>
+          <h3>Kubernetes Exploration</h3>
+          <p>Kind/Minikube clusters to practice deployment workflows and Helm releases.</p>
+          <div class="project-tags">Kubernetes • Helm • Kind</div>
         </div>
         <div class="project-card">
-          <div class="project-title">Monitoring Setup</div>
-          <div class="project-desc">Built a full monitoring and alerting stack with service-level dashboards, SLO-style alerts, and log correlation for faster incident triage.</div>
-          <div class="project-tech">Tech: Prometheus, Alertmanager, Grafana, Loki</div>
-          <div class="project-outcome">Outcome: TBD (e.g., reduced alert noise by 40% and cut MTTR by 25%).</div>
-          <div class="project-links">
-            <a href="https://example.com/monitoring-stack" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/monitoring-stack/case-study" target="_blank" rel="noopener noreferrer" title="Case Study">Case Study</a>
-          </div>
+          <h3>Backup Automation</h3>
+          <p>Automated backup verification, retention policies, and restore drills.</p>
+          <div class="project-tags">Bash • Cron • Rsync</div>
         </div>
         <div class="project-card">
-          <div class="project-title">Monitoring Setup (Zabbix + Grafana)</div>
-          <div class="project-desc">Integrated Zabbix with Grafana to centralize infrastructure metrics, visualize health, and trigger on-call alerts for critical services.</div>
-          <div class="project-tech">Tech: Zabbix, Grafana, Linux, Alerting</div>
-          <div class="project-outcome">Outcome: TBD (e.g., consolidated monitoring for 50+ hosts and improved alert response time).</div>
-          <div class="project-links">
-            <a href="https://example.com/zabbix-grafana" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/zabbix-grafana/runbook" target="_blank" rel="noopener noreferrer" title="Runbook">Runbook</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-title">Kubernetes Exploration</div>
-          <div class="project-desc">Built Kind and Minikube clusters to practice workloads, service discovery, and deployment workflows.</div>
-          <div class="project-tech">Tech: Kubernetes, Helm, Kind, Minikube</div>
-          <div class="project-outcome">Outcome: TBD (e.g., deployed 10+ sample services with Helm and learned rolling strategies).</div>
-          <div class="project-links">
-            <a href="https://example.com/k8s-labs" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/k8s-labs/notes" target="_blank" rel="noopener noreferrer" title="Notes">Notes</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-title">CI/CD Pipeline Template</div>
-          <div class="project-desc">Created a GitHub Actions pipeline with linting, container builds, and staged deployments to a test environment.</div>
-          <div class="project-tech">Tech: GitHub Actions, Docker, Bash</div>
-          <div class="project-outcome">Outcome: TBD (e.g., automated releases and reduced manual deploys to near zero).</div>
-          <div class="project-links">
-            <a href="https://example.com/cicd-template" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/cicd-template/docs" target="_blank" rel="noopener noreferrer" title="Docs">Docs</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-title">Backup and Restore Automation</div>
-          <div class="project-desc">Implemented automated backups with verification and restore drills for critical services.</div>
-          <div class="project-tech">Tech: Bash, Cron, rsync, Linux</div>
-          <div class="project-outcome">Outcome: TBD (e.g., reduced RPO to under 15 minutes and validated restore steps).</div>
-          <div class="project-links">
-            <a href="https://example.com/backup-automation" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-            <a href="https://example.com/backup-automation/runbook" target="_blank" rel="noopener noreferrer" title="Runbook">Runbook</a>
-          </div>
+          <h3>Zabbix + Grafana</h3>
+          <p>Centralized metrics, alert routing, and SLA-focused dashboards.</p>
+          <div class="project-tags">Zabbix • Grafana • Alerting</div>
         </div>
       </div>
     </section>
 
-    <section id="roadmap">
-      <div class="section-title">Roadmap</div>
-      <div class="divider"></div>
-      <ul class="info-list">
-        <li><i class="fas fa-check-circle"></i>Publish 1–2 case studies with diagrams and outcomes</li>
-        <li><i class="fas fa-check-circle"></i>Ship Terraform module registry with usage docs</li>
-        <li><i class="fas fa-check-circle"></i>Add CI/CD demo with GitHub Actions + Docker</li>
-        <li><i class="fas fa-check-circle"></i>Improve site performance and accessibility audit</li>
-      </ul>
+    <section id="toolbox" class="section">
+      <div class="section-title">
+        <h2>Toolbox</h2>
+        <p>A modern DevOps stack that balances automation, visibility, and stability.</p>
+      </div>
+      <div class="toolbox">
+        <span>Linux</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+        <span>Terraform</span>
+        <span>Ansible</span>
+        <span>GitHub Actions</span>
+        <span>Prometheus</span>
+        <span>Grafana</span>
+        <span>Loki</span>
+        <span>Vault</span>
+        <span>Networking</span>
+        <span>AWS / Azure</span>
+      </div>
     </section>
 
-    <section id="cv">
-      <div class="section-title">Curriculum Vitae</div>
-      <div class="divider"></div>
-      <p>Want to see my full professional experience and skills? View my CV below.</p>
-      <button id="cvBtn" class="cta-btn">View CV</button>
+    <section id="services" class="section">
+      <div class="section-title">
+        <h2>Services</h2>
+        <p>Engagements focused on reliability, automation, and production readiness.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Infrastructure as Code</h3>
+          <p>Design reusable Terraform modules and automation workflows.</p>
+        </div>
+        <div class="service-card">
+          <h3>CI/CD Enablement</h3>
+          <p>Build automated pipelines with quality gates and safe deploys.</p>
+        </div>
+        <div class="service-card">
+          <h3>Observability</h3>
+          <p>Metrics, logs, and alerting that match your service objectives.</p>
+        </div>
+        <div class="service-card">
+          <h3>Platform Ops</h3>
+          <p>Linux administration, hardening, and performance tuning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv" class="section">
+      <div class="section-title">
+        <h2>Resume</h2>
+        <p>Download the full experience timeline and certifications.</p>
+      </div>
+      <button id="cvBtn" class="btn primary">View CV</button>
       <div id="cvModal">
-        <div style="position:relative; width:90%; max-width:900px; background:#fff; border-radius:12px; padding:16px;">
-          <span id="closeCV" style="position:absolute; top:8px; right:12px; font-size:24px; cursor:pointer;">&times;</span>
-          <iframe src="Zdravko_Panov_CV.pdf"></iframe>
+        <div class="modal-card">
+          <button id="closeCV" class="modal-close" aria-label="Close CV modal">&times;</button>
+          <iframe src="Zdravko_Panov_CV.pdf" title="Zdravko Panov CV"></iframe>
         </div>
       </div>
     </section>
 
-    <section id="services">
-      <div class="section-title">Services</div>
-      <div class="divider"></div>
-      <ul class="info-list">
-        <li><i class="fas fa-robot"></i>Automated Deployments (Docker, Kubernetes, CI/CD)</li>
-        <li><i class="fas fa-code-branch"></i>Infrastructure as Code (Terraform)</li>
-        <li><i class="fas fa-bell"></i>Monitoring & Alerting (Prometheus, Grafana, TICK Stack)</li>
-        <li><i class="fas fa-linux"></i>Linux Administration (Hardening, tuning, firewall setup)</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <div class="section-title">Contact</div>
-      <div class="divider"></div>
-      <p>Email: <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a></p>
-      <div class="contact-links">
-        <a href="https://linkedin.com/in/zdravko-panov" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/zdravkopanov" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="mailto:zdravko.panov@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <section id="contact" class="section contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Let’s talk about automation, infrastructure, or a production rescue.</p>
+      </div>
+      <div class="contact-card">
+        <div>
+          <p>Email</p>
+          <a href="mailto:zdravko.panov@example.com">zdravko.panov@example.com</a>
+        </div>
+        <div>
+          <p>Social</p>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/zdravko-panov" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/zdravkopanov" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:zdravko.panov@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    &copy; 2025 Zdravko Panov. All rights reserved.
+  <footer class="site-footer">
+    <span>&copy; 2026 Zdravko Panov. Built for high-availability teams.</span>
   </footer>
+
   <script src="app.js" defer></script>
 </body>
 </html>

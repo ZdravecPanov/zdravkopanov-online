@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Observability Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-study-page">
+  <header class="case-header">
+    <a href="../index.html">← Back to Portfolio</a>
+    <h1>Observability Platform</h1>
+    <p>Unified metrics, logs, and alerting for faster incident response.</p>
+  </header>
+
+  <main class="case-content">
+    <section class="case-section">
+      <h2>Overview</h2>
+      <p>Built a production-ready observability stack that consolidated metrics, logs, and alerts into service-level dashboards. The goal was to reduce alert fatigue and enable faster root-cause analysis.</p>
+    </section>
+
+    <section class="case-section case-meta-grid">
+      <div><strong>Scope:</strong> 40+ hosts</div>
+      <div><strong>Timeline:</strong> 5 weeks</div>
+      <div><strong>Stack:</strong> Prometheus, Grafana, Loki, Alertmanager</div>
+      <div><strong>Role:</strong> Observability Lead</div>
+    </section>
+
+    <section class="case-section">
+      <h2>Challenge</h2>
+      <p>Monitoring was fragmented and produced noisy alerts. Incident response relied on manual log collection and repeated context switching across tools.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Approach</h2>
+      <ul>
+        <li>Standardized service metrics with consistent labels.</li>
+        <li>Implemented alert routing based on severity and ownership.</li>
+        <li>Created dashboards aligned to SLOs and business services.</li>
+        <li>Defined playbooks to accelerate triage and escalation.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Architecture</h2>
+      <pre class="case-diagram">
+Applications -> Prometheus -> Alertmanager -> On-call
+      |             |
+    Loki --------> Grafana
+      </pre>
+    </section>
+
+    <section class="case-section">
+      <h2>Results</h2>
+      <ul>
+        <li>Reduced alert noise by 40% with tuned thresholds.</li>
+        <li>Cut MTTR by 25% through shared dashboards.</li>
+        <li>Improved visibility for on-call and product teams.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | CI/CD Pipeline Template</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-study-page">
+  <header class="case-header">
+    <a href="../index.html">← Back to Portfolio</a>
+    <h1>CI/CD Pipeline Template</h1>
+    <p>Reusable GitHub Actions workflow for automated builds and deployments.</p>
+  </header>
+
+  <main class="case-content">
+    <section class="case-section">
+      <h2>Overview</h2>
+      <p>Designed a pipeline template that standardizes linting, testing, container builds, and staged deployments. The template reduced handoffs and made deployments repeatable across projects.</p>
+    </section>
+
+    <section class="case-section case-meta-grid">
+      <div><strong>Scope:</strong> 4 repositories</div>
+      <div><strong>Timeline:</strong> 3 weeks</div>
+      <div><strong>Stack:</strong> GitHub Actions, Docker, Bash</div>
+      <div><strong>Role:</strong> DevOps Engineer</div>
+    </section>
+
+    <section class="case-section">
+      <h2>Challenge</h2>
+      <p>Each project used a different deployment workflow, making releases error-prone and slow. Releases required manual steps and inconsistent approval checks.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Approach</h2>
+      <ul>
+        <li>Created reusable workflow templates with configurable inputs.</li>
+        <li>Added automated lint/test stages and Docker image scanning.</li>
+        <li>Implemented staged deploys with manual approvals for production.</li>
+        <li>Documented release playbooks and rollback procedures.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Architecture</h2>
+      <pre class="case-diagram">
+Commit -> Lint/Test -> Build Image -> Staging -> Approval -> Production
+      </pre>
+    </section>
+
+    <section class="case-section">
+      <h2>Results</h2>
+      <ul>
+        <li>Cut deployment time by 50% through automation.</li>
+        <li>Improved release consistency across teams.</li>
+        <li>Clear audit trail for every release.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

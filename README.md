@@ -1,29 +1,15 @@
 # Zdravko Panov — DevOps Portfolio
 
-A production-ready, single-page portfolio for a DevOps/System Administrator profile. Built as a fast, static site designed for GitHub Pages or any static host.
+A modern DevOps portfolio with case study pages, designed as a fast static site for GitHub Pages or any static host.
 
-## Architecture
-- Static single-page application served as plain HTML, CSS, and JavaScript.
-- All content lives in `index.html` with no backend dependencies.
-- Assets are referenced locally; external CDNs are used for fonts and icons.
+## What’s Included
+- `index.html` — main portfolio page
+- `styles.css` — shared styling for the landing page and case studies
+- `app.js` — nav behavior and CV modal
+- `case-studies/` — structured project stories with outcomes and diagrams
+- `.github/workflows/pages.yml` — GitHub Pages deployment workflow
 
-## Stack
-- HTML5 + CSS3 + Vanilla JavaScript
-- Google Fonts (Inter)
-- Font Awesome icons (CDN)
-- GitHub Pages compatible hosting
-
-## Deployment
-
-### GitHub Pages
-1. Push to `main` (or your default branch).
-2. In GitHub: Settings → Pages → Deploy from branch → select branch and root.
-3. If using a custom domain, keep the `CNAME` file updated.
-
-### Any static host
-- Upload the repository contents and serve `index.html` as the entry file.
-
-## Local Development
+## Local Preview
 Use any static file server. Example:
 
 ```bash
@@ -33,35 +19,32 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
-## HTML Validation
-This repo includes a GitHub Actions workflow that validates HTML on every push and pull request.
+## Customize Content
+Quick edits you’ll likely want:
+- Replace metrics and outcomes in `index.html` and `case-studies/*.html`.
+- Update contact details in `index.html`.
+- Swap or add new case study pages under `case-studies/`.
+- Replace `Zdravko_Panov_CV.pdf` with your latest CV.
 
-## Suggested Folder Structure (Future)
-If this grows beyond a single page, consider:
+## Deploy
+### GitHub Pages
+1. Push to `main`.
+2. In GitHub: Settings → Pages → Source → GitHub Actions.
+3. The workflow will publish the site automatically.
 
-```
-./
-  src/
-    index.html
-    styles/
-      main.css
-    scripts/
-      main.js
-  public/
-    assets/
-      images/
-      icons/
-    CNAME
-  .github/
-    workflows/
-  README.md
-```
+### Any static host
+Upload the repository contents and serve `index.html` as the entry file.
 
-## Roadmap
-- Add 1–2 detailed project case studies with diagrams and outcomes.
-- Extract CSS/JS into dedicated files for easier maintenance.
-- Add accessibility and performance audit checks.
-- Expand CI with linting and link checks.
+## Suggested Content Checklist
+- 3–5 case studies with clear results and architecture diagrams.
+- Metrics for provisioning speed, deployment frequency, or MTTR.
+- Links to repos, demos, or writeups.
+- Updated CV and certifications.
 
-## Contributing
-This is a personal portfolio. Issues and suggestions are welcome.
+## Roadmap Ideas
+- Add a dedicated “Work Experience” timeline.
+- Include a diagram library or screenshots for each project.
+- Add a lightweight CI job for HTML validation and link checks.
+
+## License
+Personal portfolio. Feel free to fork and adapt.
