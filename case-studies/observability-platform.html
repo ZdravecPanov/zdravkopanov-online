@@ -18,11 +18,23 @@
     <section class="case-section">
       <h2>Repository</h2>
       <p><a href="https://github.com/zdravkopanov/observability-platform" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+      <ul>
+        <li><a href="https://github.com/zdravkopanov/observability-platform/tree/main/docker-compose" target="_blank" rel="noopener noreferrer">Docker Compose</a></li>
+        <li><a href="https://github.com/zdravkopanov/observability-platform/tree/main/configs" target="_blank" rel="noopener noreferrer">Configs</a></li>
+        <li><a href="https://github.com/zdravkopanov/observability-platform/tree/main/setup" target="_blank" rel="noopener noreferrer">Setup Steps</a></li>
+        <li><a href="https://github.com/zdravkopanov/observability-platform/tree/main/runbook" target="_blank" rel="noopener noreferrer">Runbook</a></li>
+      </ul>
     </section>
 
     <section class="case-section">
       <h2>Problem</h2>
-      <p>Monitoring was split across tools and teams. Alert fatigue, missing baselines, and inconsistent dashboards made incident response slow and unreliable.</p>
+      <p>Monitoring was fragmented across tools and teams, creating alert noise, poor visibility, and slow incident response.</p>
+      <ul>
+        <li>Fragmented monitoring made it hard to correlate signals across systems.</li>
+        <li>Alert noise overwhelmed on-call engineers and hid real incidents.</li>
+        <li>Lack of visibility into service health delayed root-cause analysis.</li>
+        <li>Slow incident response increased downtime and escalations.</li>
+      </ul>
     </section>
 
     <section class="case-section case-meta-grid">
@@ -34,6 +46,11 @@
 
     <section class="case-section">
       <h2>Architecture Diagram</h2>
+      <p>This platform centers on a Zabbix server that collects metrics from lightweight agents, feeds Grafana dashboards, and drives a clear alert flow to the on-call team.</p>
+      <figure>
+        <img src="../assets/observability-architecture.png" alt="Observability platform architecture diagram showing Zabbix agents, server, Grafana dashboards, and alert flow." class="case-screenshot-image">
+        <figcaption>Architecture: agents → Zabbix server → Grafana dashboards → alert flow.</figcaption>
+      </figure>
       <pre class="case-diagram">
 Hosts / Services
       |
@@ -60,19 +77,29 @@ Dashboards + SLA Reports
     </section>
 
     <section class="case-section">
+      <h2>Incident Response Runbook (Example)</h2>
+      <ol>
+        <li><strong>Alert received:</strong> Critical trigger fires (CPU saturation or service down).</li>
+        <li><strong>Triage:</strong> Check Grafana dashboard, confirm host status, inspect recent changes.</li>
+        <li><strong>Escalation:</strong> Page service owner if SLA is at risk or incident persists >15 minutes.</li>
+        <li><strong>Resolution:</strong> Apply mitigation, validate recovery, close alert with notes.</li>
+      </ol>
+    </section>
+
+    <section class="case-section">
       <h2>Screenshots</h2>
       <div class="case-screenshots">
         <figure>
           <div class="case-screenshot-placeholder">Dashboard Placeholder</div>
-          <figcaption>Dashboards: Infrastructure health and service uptime.</figcaption>
-        </figure>
-        <figure>
-          <div class="case-screenshot-placeholder">Alert Placeholder</div>
-          <figcaption>Alerts: Severity tiers and routing to on-call.</figcaption>
+          <figcaption>Grafana dashboards: service SLOs, latency, and error rates in one view.</figcaption>
         </figure>
         <figure>
           <div class="case-screenshot-placeholder">Infrastructure Placeholder</div>
-          <figcaption>Infrastructure View: Host groups and topology summary.</figcaption>
+          <figcaption>Zabbix host overview: inventory health, agent status, and key metrics.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Alert Placeholder</div>
+          <figcaption>Alert configuration: trigger thresholds and escalation paths.</figcaption>
         </figure>
       </div>
     </section>
@@ -80,19 +107,43 @@ Dashboards + SLA Reports
     <section class="case-section">
       <h2>Metrics</h2>
       <ul>
-        <li>Alert volume reduced by ~35% after tuning thresholds and routing.</li>
+        <li>Hosts monitored: 58 Linux/VM nodes across prod and staging.</li>
+        <li>Metrics collected: ~12,000 time series at steady state.</li>
+        <li>Alert rules: 110 total (14 critical, 38 warning, 58 informational).</li>
         <li>MTTR improved from ~45 minutes to ~25 minutes (≈44% faster).</li>
-        <li>On-call escalations reduced from ~8/week to ~4/week with better signal quality.</li>
+        <li>Dashboard usage: ~35 weekly active viewers across ops and dev.</li>
       </ul>
       <p class="case-metrics-note">Suggested validation sources: Zabbix alert history, Grafana dashboards, incident reports.</p>
     </section>
 
     <section class="case-section">
+      <h2>Before vs After</h2>
+      <div class="case-compare">
+        <div class="case-compare-item">
+          <h3>Monitoring Setup</h3>
+          <p><strong>Before:</strong> Multiple tools with isolated views and no shared dashboards.</p>
+          <p><strong>After:</strong> Unified Zabbix + Grafana stack with standardized dashboards.</p>
+        </div>
+        <div class="case-compare-item">
+          <h3>Alert Volume</h3>
+          <p><strong>Before:</strong> ~120 alerts/day with frequent duplicates.</p>
+          <p><strong>After:</strong> ~75 alerts/day with tuned thresholds and routing.</p>
+        </div>
+        <div class="case-compare-item">
+          <h3>Response Time</h3>
+          <p><strong>Before:</strong> MTTR ~45 minutes.</p>
+          <p><strong>After:</strong> MTTR ~25 minutes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
       <h2>Lessons Learned</h2>
       <ul>
-        <li>Consistent labeling makes dashboards and alerts scalable.</li>
-        <li>Routing rules should mirror ownership and escalation paths.</li>
-        <li>Dashboards must be reviewed quarterly to stay relevant.</li>
+        <li>Alert fatigue tuning requires ruthless pruning and ownership-based routing.</li>
+        <li>Dashboard design improves adoption when centered on service outcomes.</li>
+        <li>Agent scaling works best with automation and standardized templates.</li>
+        <li>Incident workflow clarity reduces triage time and escalations.</li>
       </ul>
     </section>
   </main>

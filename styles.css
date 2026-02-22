@@ -557,6 +557,14 @@ main {
   font-family: "JetBrains Mono", monospace;
 }
 
+.case-screenshot-image {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1);
+  display: block;
+}
+
 .case-screenshots figcaption {
   margin-top: 10px;
   font-size: 0.88rem;
@@ -590,6 +598,22 @@ main {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.85rem;
   overflow: auto;
+}
+
+.case-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.case-compare-item {
+  background: rgba(27, 34, 48, 0.06);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.case-compare-item h3 {
+  margin-top: 0;
 }
 
 @keyframes fadeUp {
