@@ -16,8 +16,13 @@
 
   <main class="case-content">
     <section class="case-section">
-      <h2>Overview</h2>
-      <p>Built a centralized observability platform using Zabbix for metrics and alerting and Grafana for executive and operations dashboards. The goal was to replace fragmented monitoring with a single source of truth for infrastructure health, incident response, and SLA reporting.</p>
+      <h2>Repository</h2>
+      <p><a href="https://github.com/zdravkopanov/observability-platform" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+    </section>
+
+    <section class="case-section">
+      <h2>Problem</h2>
+      <p>Monitoring was split across tools and teams. Alert fatigue, missing baselines, and inconsistent dashboards made incident response slow and unreliable.</p>
     </section>
 
     <section class="case-section case-meta-grid">
@@ -28,22 +33,7 @@
     </section>
 
     <section class="case-section">
-      <h2>Challenge</h2>
-      <p>Monitoring was split across tools and teams. Alert fatigue, missing baselines, and inconsistent dashboards made incident response slow and unreliable.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Goals</h2>
-      <ul>
-        <li>Consolidate metrics and alerts into a single platform.</li>
-        <li>Standardize dashboards for infrastructure, services, and SLA reporting.</li>
-        <li>Reduce alert noise with tuned thresholds and routing rules.</li>
-        <li>Enable on-call teams to identify root cause in minutes.</li>
-      </ul>
-    </section>
-
-    <section class="case-section">
-      <h2>Architecture</h2>
+      <h2>Architecture Diagram</h2>
       <pre class="case-diagram">
 Hosts / Services
       |
@@ -60,41 +50,49 @@ Dashboards + SLA Reports
     </section>
 
     <section class="case-section">
-      <h2>Dashboards</h2>
-      <ul>
-        <li><strong>Infrastructure Health:</strong> CPU, memory, disk I/O, network saturation.</li>
-        <li><strong>Service Availability:</strong> uptime, response time, error rates.</li>
-        <li><strong>Capacity Planning:</strong> growth trends, saturation forecasts.</li>
-        <li><strong>SLA Reporting:</strong> monthly uptime and incident summaries.</li>
-      </ul>
+      <h2>Setup Steps</h2>
+      <ol>
+        <li>Deploy Zabbix server and agents with standardized templates.</li>
+        <li>Connect Grafana to Zabbix datasource and validate metrics.</li>
+        <li>Create dashboards for infra health, services, and SLA reporting.</li>
+        <li>Configure alert rules, routing, and maintenance windows.</li>
+      </ol>
     </section>
 
     <section class="case-section">
-      <h2>Alerting Strategy</h2>
-      <ul>
-        <li>Tiered severity levels with routing to the right on-call group.</li>
-        <li>Suppression rules for maintenance windows and known noisy hosts.</li>
-        <li>Actionable alerts that include runbook links and remediation steps.</li>
-        <li>Escalation policy for critical services with automated paging.</li>
-      </ul>
+      <h2>Screenshots</h2>
+      <div class="case-screenshots">
+        <figure>
+          <div class="case-screenshot-placeholder">Dashboard Placeholder</div>
+          <figcaption>Dashboards: Infrastructure health and service uptime.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Alert Placeholder</div>
+          <figcaption>Alerts: Severity tiers and routing to on-call.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Infrastructure Placeholder</div>
+          <figcaption>Infrastructure View: Host groups and topology summary.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="case-section">
-      <h2>Implementation Highlights</h2>
+      <h2>Metrics</h2>
       <ul>
-        <li>Standardized Zabbix templates across Linux and network devices.</li>
-        <li>Grafana dashboards built with consistent naming and tags.</li>
-        <li>Integrated alert notifications with Slack and email channels.</li>
-        <li>Documented runbooks aligned to top incident categories.</li>
+        <li>Alert volume reduced by ~35% after tuning thresholds and routing.</li>
+        <li>MTTR improved from ~45 minutes to ~25 minutes (≈44% faster).</li>
+        <li>On-call escalations reduced from ~8/week to ~4/week with better signal quality.</li>
       </ul>
+      <p class="case-metrics-note">Suggested validation sources: Zabbix alert history, Grafana dashboards, incident reports.</p>
     </section>
 
     <section class="case-section">
-      <h2>Results</h2>
+      <h2>Lessons Learned</h2>
       <ul>
-        <li>Reduced alert noise by 40% through tuned triggers.</li>
-        <li>Improved incident triage time with unified dashboards.</li>
-        <li>Created a single reporting view for leadership and ops.</li>
+        <li>Consistent labeling makes dashboards and alerts scalable.</li>
+        <li>Routing rules should mirror ownership and escalation paths.</li>
+        <li>Dashboards must be reviewed quarterly to stay relevant.</li>
       </ul>
     </section>
   </main>

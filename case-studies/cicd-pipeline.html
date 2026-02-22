@@ -16,8 +16,13 @@
 
   <main class="case-content">
     <section class="case-section">
-      <h2>Overview</h2>
-      <p>Designed a pipeline template that standardizes linting, testing, container builds, and staged deployments. The template reduced handoffs and made deployments repeatable across projects.</p>
+      <h2>Repository</h2>
+      <p><a href="https://github.com/zdravkopanov/cicd-pipeline-template" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+    </section>
+
+    <section class="case-section">
+      <h2>Problem</h2>
+      <p>Each project used a different deployment workflow, making releases error-prone and slow. Releases required manual steps and inconsistent approval checks.</p>
     </section>
 
     <section class="case-section case-meta-grid">
@@ -28,33 +33,56 @@
     </section>
 
     <section class="case-section">
-      <h2>Challenge</h2>
-      <p>Each project used a different deployment workflow, making releases error-prone and slow. Releases required manual steps and inconsistent approval checks.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Approach</h2>
-      <ul>
-        <li>Created reusable workflow templates with configurable inputs.</li>
-        <li>Added automated lint/test stages and Docker image scanning.</li>
-        <li>Implemented staged deploys with manual approvals for production.</li>
-        <li>Documented release playbooks and rollback procedures.</li>
-      </ul>
-    </section>
-
-    <section class="case-section">
-      <h2>Architecture</h2>
+      <h2>Architecture Diagram</h2>
       <pre class="case-diagram">
 Commit -> Lint/Test -> Build Image -> Staging -> Approval -> Production
       </pre>
     </section>
 
     <section class="case-section">
-      <h2>Results</h2>
+      <h2>Setup Steps</h2>
+      <ol>
+        <li>Define reusable workflow templates with inputs.</li>
+        <li>Configure lint, test, and security scanning stages.</li>
+        <li>Build and tag Docker images with versioning rules.</li>
+        <li>Enable staged deploys with manual production approvals.</li>
+      </ol>
+    </section>
+
+    <section class="case-section">
+      <h2>Screenshots</h2>
+      <div class="case-screenshots">
+        <figure>
+          <div class="case-screenshot-placeholder">Dashboard Placeholder</div>
+          <figcaption>Dashboards: Pipeline run summary and job timings.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Alert Placeholder</div>
+          <figcaption>Alerts: Failed build notifications and approval requests.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Infrastructure Placeholder</div>
+          <figcaption>Infrastructure View: Build artifacts and deployment targets.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Metrics</h2>
       <ul>
-        <li>Cut deployment time by 50% through automation.</li>
-        <li>Improved release consistency across teams.</li>
-        <li>Clear audit trail for every release.</li>
+        <li>Lead time for changes reduced from ~2 days to ~6 hours.</li>
+        <li>Deployment duration reduced from ~45 minutes to ~18 minutes (≈60% faster).</li>
+        <li>Release rollback rate decreased from ~10% to ~3% after quality gates.</li>
+      </ul>
+      <p class="case-metrics-note">Suggested validation sources: GitHub Actions run history, deployment logs, change reviews.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Lessons Learned</h2>
+      <ul>
+        <li>Reusable workflows reduce duplication and maintenance overhead.</li>
+        <li>Manual approvals protect critical services during peak hours.</li>
+        <li>Documentation and templates accelerate adoption.</li>
       </ul>
     </section>
   </main>

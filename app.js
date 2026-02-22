@@ -4,6 +4,7 @@ const navToggle = document.querySelector('.nav-toggle');
 const navMenu = document.getElementById('navLinks');
 
 const setActiveLink = () => {
+  if (!sections.length || !navLinks.length) return;
   let activeIdx = 0;
   sections.forEach((section, index) => {
     if (window.scrollY + 160 >= section.offsetTop) {
@@ -33,6 +34,25 @@ navLinks.forEach((link) => {
 
 document.addEventListener('scroll', setActiveLink);
 window.addEventListener('load', setActiveLink);
+
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectItems = document.querySelectorAll('.project-item');
+
+const applyFilter = (filter) => {
+  projectItems.forEach((item) => {
+    const tags = item.dataset.tags || '';
+    const showItem = filter === 'all' || tags.includes(filter);
+    item.style.display = showItem ? 'block' : 'none';
+  });
+};
+
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach((btn) => btn.classList.remove('active'));
+    button.classList.add('active');
+    applyFilter(button.dataset.filter);
+  });
+});
 
 const cvBtn = document.getElementById('cvBtn');
 const cvModal = document.getElementById('cvModal');

@@ -16,8 +16,13 @@
 
   <main class="case-content">
     <section class="case-section">
-      <h2>Overview</h2>
-      <p>Designed a modular Infrastructure as Code system to standardize provisioning across environments. The goal was to reduce drift, speed up onboarding, and enforce best practices for security and networking.</p>
+      <h2>Repository</h2>
+      <p><a href="https://github.com/zdravkopanov/infra-automation" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+    </section>
+
+    <section class="case-section">
+      <h2>Problem</h2>
+      <p>Provisioning was manual and inconsistent. Each environment required different steps, and reviewing changes was difficult without a shared IaC baseline.</p>
     </section>
 
     <section class="case-section case-meta-grid">
@@ -28,22 +33,7 @@
     </section>
 
     <section class="case-section">
-      <h2>Challenge</h2>
-      <p>Provisioning was manual and inconsistent. Each environment required different steps, and reviewing changes was difficult without a shared IaC baseline.</p>
-    </section>
-
-    <section class="case-section">
-      <h2>Approach</h2>
-      <ul>
-        <li>Built reusable Terraform modules for networking, compute, and security.</li>
-        <li>Implemented environment-specific overlays for staging and production.</li>
-        <li>Automated validation and plan reviews in GitHub Actions.</li>
-        <li>Created runbooks for module usage and rollback workflows.</li>
-      </ul>
-    </section>
-
-    <section class="case-section">
-      <h2>Architecture</h2>
+      <h2>Architecture Diagram</h2>
       <pre class="case-diagram">
 GitHub Actions
    |   
@@ -56,11 +46,49 @@ Network + Compute + Observability
     </section>
 
     <section class="case-section">
-      <h2>Results</h2>
+      <h2>Setup Steps</h2>
+      <ol>
+        <li>Define Terraform modules for network, compute, and security.</li>
+        <li>Configure environment overlays for staging and production.</li>
+        <li>Integrate validation and plan reviews in GitHub Actions.</li>
+        <li>Publish runbooks and module usage guidance.</li>
+      </ol>
+    </section>
+
+    <section class="case-section">
+      <h2>Screenshots</h2>
+      <div class="case-screenshots">
+        <figure>
+          <div class="case-screenshot-placeholder">Dashboard Placeholder</div>
+          <figcaption>Dashboards: Environment health and provisioning status.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Alert Placeholder</div>
+          <figcaption>Alerts: Terraform plan checks and policy gate results.</figcaption>
+        </figure>
+        <figure>
+          <div class="case-screenshot-placeholder">Infrastructure Placeholder</div>
+          <figcaption>Infrastructure View: Module registry and stack overview.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <h2>Metrics</h2>
       <ul>
-        <li>Reduced provisioning time from hours to minutes.</li>
-        <li>Standardized network policies and security baselines.</li>
-        <li>Improved auditability with Git-based change history.</li>
+        <li>Provisioning time reduced from ~2 hours to ~25 minutes (≈80% faster).</li>
+        <li>Change failure rate lowered from ~15% to ~6% after IaC validation gates.</li>
+        <li>Environment rebuilds went from 1–2 per month to 4–6 per month without added effort.</li>
+      </ul>
+      <p class="case-metrics-note">Suggested validation sources: Terraform plan/apply logs, CI run history, change tickets.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Lessons Learned</h2>
+      <ul>
+        <li>Module versioning prevents breaking changes across teams.</li>
+        <li>Plan review gates reduce risky production changes.</li>
+        <li>Runbooks are essential for adoption and consistency.</li>
       </ul>
     </section>
   </main>

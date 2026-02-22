@@ -35,7 +35,11 @@ jobs:
             --exclude ".git" \
             --exclude ".github" \
             --exclude "README.md" \
+            --exclude "_site" \
             ./ _site/
+          if [ -f CNAME ]; then
+            cp CNAME _site/
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

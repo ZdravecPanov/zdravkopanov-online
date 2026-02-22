@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | DevOps Case Studies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header projects-header">
+    <nav class="top-nav">
+      <a class="brand" href="index.html">ZP<span>Ops</span></a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div id="navLinks" class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#impact">Impact</a>
+        <a href="index.html#case-studies">Case Studies</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="index.html#toolbox">Toolbox</a>
+        <a href="index.html#notes">Notes</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="projects-hero">
+      <p class="eyebrow">Case Studies • Project Archive</p>
+      <h1>Projects & Case Studies</h1>
+      <p>Browse all DevOps projects with filters by focus area and technology.</p>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="section-title">
+        <h2>Filter Projects</h2>
+        <p>Select a focus area or tech tag to narrow the list.</p>
+      </div>
+      <div class="filter-bar" role="group" aria-label="Project filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+        <button class="filter-btn" data-filter="observability">Observability</button>
+        <button class="filter-btn" data-filter="cicd">CI/CD</button>
+        <button class="filter-btn" data-filter="backup">Backups</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="projects-grid projects-list" id="projectsList">
+        <article class="project-card project-item" data-tags="automation terraform ansible linux">
+          <h3>Infrastructure Automation</h3>
+          <p>Reusable Terraform modules and automation pipelines for consistent environments.</p>
+          <div class="project-tags">Terraform • Ansible • GitHub Actions</div>
+          <div class="project-links">
+            <a class="btn text" href="case-studies/infra-automation.html">Read Case Study</a>
+            <a class="btn text" href="https://github.com/zdravkopanov/infra-automation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card project-item" data-tags="observability grafana zabbix alerting">
+          <h3>Observability Platform</h3>
+          <p>Grafana + Zabbix stack with unified alerts and actionable dashboards.</p>
+          <div class="project-tags">Grafana • Zabbix • Alerting</div>
+          <div class="project-links">
+            <a class="btn text" href="case-studies/observability-platform.html">Read Case Study</a>
+            <a class="btn text" href="https://github.com/zdravkopanov/observability-platform" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card project-item" data-tags="cicd automation docker github-actions">
+          <h3>CI/CD Pipeline Template</h3>
+          <p>Reusable GitHub Actions workflow for automated builds and deployments.</p>
+          <div class="project-tags">GitHub Actions • Docker</div>
+          <div class="project-links">
+            <a class="btn text" href="case-studies/cicd-pipeline.html">Read Case Study</a>
+            <a class="btn text" href="https://github.com/zdravkopanov/cicd-pipeline-template" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+
+        <article class="project-card project-item" data-tags="automation backup ansible linux">
+          <h3>Linux Homelab Automation</h3>
+          <p>Bootstrap scripts, configuration management, and backup automation.</p>
+          <div class="project-tags">Bash • Ansible • Backups</div>
+          <div class="project-links">
+            <a class="btn text" href="case-studies/linux-homelab-automation.html">Read Case Study</a>
+            <a class="btn text" href="https://github.com/zdravkopanov/linux-homelab-automation" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>&copy; 2026 Zdravko Panov. Built for high-availability teams.</span>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

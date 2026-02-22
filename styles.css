@@ -349,6 +349,12 @@ main {
   gap: 12px;
 }
 
+.case-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .case-meta {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.82rem;
@@ -374,11 +380,48 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.projects-list .project-card {
+  display: grid;
+  gap: 12px;
+}
+
 .project-tags {
   margin-top: 12px;
   font-family: "JetBrains Mono", monospace;
   color: var(--muted);
   font-size: 0.82rem;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-btn {
+  border: 1px solid rgba(27, 34, 48, 0.2);
+  background: #fff;
+  color: var(--slate);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1b2230;
+  box-shadow: 0 12px 24px rgba(248, 184, 74, 0.22);
+}
+
+.projects-header {
+  padding-bottom: 28px;
+}
+
+.projects-hero {
+  margin-top: 40px;
 }
 
 .toolbox {
@@ -489,6 +532,41 @@ main {
 
 .case-section h2 {
   margin-top: 0;
+}
+
+.case-screenshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.case-screenshot-placeholder {
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(27, 34, 48, 0.08),
+    rgba(27, 34, 48, 0.08) 12px,
+    rgba(27, 34, 48, 0.18) 12px,
+    rgba(27, 34, 48, 0.18) 24px
+  );
+  border-radius: 14px;
+  height: 150px;
+  display: grid;
+  place-items: center;
+  color: var(--slate);
+  font-size: 0.85rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.case-screenshots figcaption {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.case-metrics-note {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .case-meta-grid {
