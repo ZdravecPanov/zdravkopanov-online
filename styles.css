@@ -294,7 +294,8 @@ main {
 .services-grid,
 .projects-grid,
 .impact-grid,
-.case-grid {
+.case-grid,
+.notes-grid {
   display: grid;
   gap: 20px;
 }
@@ -308,6 +309,7 @@ main {
 .project-card,
 .impact-card,
 .case-card,
+.note-card,
 .contact-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -350,6 +352,21 @@ main {
 .case-meta {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.notes-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.note-card {
+  display: grid;
+  gap: 10px;
+}
+
+.note-meta {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
   color: var(--muted);
 }
 

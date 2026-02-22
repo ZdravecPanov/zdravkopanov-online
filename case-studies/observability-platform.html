@@ -3,60 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Case Study | Observability Platform</title>
+  <title>Case Study | Observability Platform (Grafana + Zabbix)</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="case-study-page">
   <header class="case-header">
     <a href="../index.html">← Back to Portfolio</a>
-    <h1>Observability Platform</h1>
-    <p>Unified metrics, logs, and alerting for faster incident response.</p>
+    <h1>Observability Platform — Grafana + Zabbix</h1>
+    <p>Unified monitoring, alerting, and dashboards for infrastructure and service health.</p>
   </header>
 
   <main class="case-content">
     <section class="case-section">
       <h2>Overview</h2>
-      <p>Built a production-ready observability stack that consolidated metrics, logs, and alerts into service-level dashboards. The goal was to reduce alert fatigue and enable faster root-cause analysis.</p>
+      <p>Built a centralized observability platform using Zabbix for metrics and alerting and Grafana for executive and operations dashboards. The goal was to replace fragmented monitoring with a single source of truth for infrastructure health, incident response, and SLA reporting.</p>
     </section>
 
     <section class="case-section case-meta-grid">
-      <div><strong>Scope:</strong> 40+ hosts</div>
-      <div><strong>Timeline:</strong> 5 weeks</div>
-      <div><strong>Stack:</strong> Prometheus, Grafana, Loki, Alertmanager</div>
-      <div><strong>Role:</strong> Observability Lead</div>
+      <div><strong>Scope:</strong> 50+ hosts, 12 critical services</div>
+      <div><strong>Timeline:</strong> 4 weeks</div>
+      <div><strong>Stack:</strong> Zabbix, Grafana, Linux, Alerting</div>
+      <div><strong>Role:</strong> DevOps Engineer</div>
     </section>
 
     <section class="case-section">
       <h2>Challenge</h2>
-      <p>Monitoring was fragmented and produced noisy alerts. Incident response relied on manual log collection and repeated context switching across tools.</p>
+      <p>Monitoring was split across tools and teams. Alert fatigue, missing baselines, and inconsistent dashboards made incident response slow and unreliable.</p>
     </section>
 
     <section class="case-section">
-      <h2>Approach</h2>
+      <h2>Goals</h2>
       <ul>
-        <li>Standardized service metrics with consistent labels.</li>
-        <li>Implemented alert routing based on severity and ownership.</li>
-        <li>Created dashboards aligned to SLOs and business services.</li>
-        <li>Defined playbooks to accelerate triage and escalation.</li>
+        <li>Consolidate metrics and alerts into a single platform.</li>
+        <li>Standardize dashboards for infrastructure, services, and SLA reporting.</li>
+        <li>Reduce alert noise with tuned thresholds and routing rules.</li>
+        <li>Enable on-call teams to identify root cause in minutes.</li>
       </ul>
     </section>
 
     <section class="case-section">
       <h2>Architecture</h2>
       <pre class="case-diagram">
-Applications -> Prometheus -> Alertmanager -> On-call
-      |             |
-    Loki --------> Grafana
+Hosts / Services
+      |
+  Zabbix Agents
+      |
+ Zabbix Server
+      | \
+      |  -> Alerting (Email / Chat / On-call)
+      |
+Grafana (Zabbix Datasource)
+      |
+Dashboards + SLA Reports
       </pre>
+    </section>
+
+    <section class="case-section">
+      <h2>Dashboards</h2>
+      <ul>
+        <li><strong>Infrastructure Health:</strong> CPU, memory, disk I/O, network saturation.</li>
+        <li><strong>Service Availability:</strong> uptime, response time, error rates.</li>
+        <li><strong>Capacity Planning:</strong> growth trends, saturation forecasts.</li>
+        <li><strong>SLA Reporting:</strong> monthly uptime and incident summaries.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Alerting Strategy</h2>
+      <ul>
+        <li>Tiered severity levels with routing to the right on-call group.</li>
+        <li>Suppression rules for maintenance windows and known noisy hosts.</li>
+        <li>Actionable alerts that include runbook links and remediation steps.</li>
+        <li>Escalation policy for critical services with automated paging.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Implementation Highlights</h2>
+      <ul>
+        <li>Standardized Zabbix templates across Linux and network devices.</li>
+        <li>Grafana dashboards built with consistent naming and tags.</li>
+        <li>Integrated alert notifications with Slack and email channels.</li>
+        <li>Documented runbooks aligned to top incident categories.</li>
+      </ul>
     </section>
 
     <section class="case-section">
       <h2>Results</h2>
       <ul>
-        <li>Reduced alert noise by 40% with tuned thresholds.</li>
-        <li>Cut MTTR by 25% through shared dashboards.</li>
-        <li>Improved visibility for on-call and product teams.</li>
+        <li>Reduced alert noise by 40% through tuned triggers.</li>
+        <li>Improved incident triage time with unified dashboards.</li>
+        <li>Created a single reporting view for leadership and ops.</li>
       </ul>
     </section>
   </main>

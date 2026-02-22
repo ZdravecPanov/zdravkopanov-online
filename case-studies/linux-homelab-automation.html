@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | Linux Homelab Automation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-study-page">
+  <header class="case-header">
+    <a href="../index.html">← Back to Portfolio</a>
+    <h1>Linux Homelab Automation</h1>
+    <p>Bootstrap scripts, configuration management, and backup automation for a reliable home lab.</p>
+  </header>
+
+  <main class="case-content">
+    <section class="case-section">
+      <h2>Overview</h2>
+      <p>Built a reproducible Linux homelab platform by automating server bootstrap, configuration management, and backup routines. The outcome is a consistent baseline across nodes, fast rebuilds, and reliable recovery for critical services.</p>
+    </section>
+
+    <section class="case-section case-meta-grid">
+      <div><strong>Scope:</strong> 8 nodes, 3 environments</div>
+      <div><strong>Timeline:</strong> 5 weeks</div>
+      <div><strong>Stack:</strong> Bash, Ansible, Cron, Rsync</div>
+      <div><strong>Role:</strong> DevOps Engineer</div>
+    </section>
+
+    <section class="case-section">
+      <h2>Challenge</h2>
+      <p>Server builds were manual and inconsistent. Rebuilding nodes after hardware changes or OS updates required repeated steps, leading to drift and configuration errors.</p>
+    </section>
+
+    <section class="case-section">
+      <h2>Goals</h2>
+      <ul>
+        <li>Bootstrap nodes in under 30 minutes with repeatable scripts.</li>
+        <li>Standardize service configuration and hardening baselines.</li>
+        <li>Automate backups with verification and restore drills.</li>
+        <li>Track configurations as code with versioned change history.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Architecture</h2>
+      <pre class="case-diagram">
+New Node
+  |
+Bootstrap Script
+  |
+Ansible Playbooks
+  |
+Baseline Config + Services
+  |
+Backup Agent -> NAS / Remote Storage
+      </pre>
+    </section>
+
+    <section class="case-section">
+      <h2>Bootstrap Scripts</h2>
+      <ul>
+        <li>One-command setup for base packages, users, SSH, and firewall rules.</li>
+        <li>OS hardening steps with reusable system profiles.</li>
+        <li>Automatic registration with the configuration management inventory.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Configuration Management</h2>
+      <ul>
+        <li>Ansible playbooks for service roles and baseline configurations.</li>
+        <li>Environment overlays for dev, staging, and production equivalents.</li>
+        <li>Idempotent execution to eliminate drift during re-runs.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Backup Strategy</h2>
+      <ul>
+        <li>Daily incremental backups with weekly full snapshots.</li>
+        <li>Retention policies and verification checks for data integrity.</li>
+        <li>Monthly restore drills to validate disaster recovery readiness.</li>
+      </ul>
+    </section>
+
+    <section class="case-section">
+      <h2>Results</h2>
+      <ul>
+        <li>New node provisioning reduced from hours to ~25 minutes.</li>
+        <li>Consistent configuration across all lab environments.</li>
+        <li>Improved confidence in recovery with verified backups.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
