@@ -1,0 +1,107 @@
+---
+import Navbar from '../components/Navbar.astro';
+
+const showQuickNav = Astro.url.pathname !== '/';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<Navbar />
+		<slot />
+
+		{showQuickNav && (
+			<div class="quick-nav" aria-label="Quick navigation">
+				<a class="quick-nav__btn" href="/">Home</a>
+				<button class="quick-nav__btn" type="button" data-back-btn>Back</button>
+			</div>
+		)}
+
+		<script is:inline>
+			(() => {
+				const backBtn = document.querySelector('[data-back-btn]');
+				if (!backBtn) return;
+
+				backBtn.addEventListener('click', () => {
+					if (window.history.length > 1) {
+						window.history.back();
+					} else {
+						window.location.href = '/';
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
+
+<style>
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(html) {
+    width: 100%;
+  }
+
+  :global(body) {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 4.3rem;
+    background: #02070d;
+  }
+
+  .quick-nav {
+    position: fixed;
+    left: 1rem !important;
+    top: 5.1rem !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 70;
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .quick-nav__btn {
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: rgba(2, 8, 20, 0.84);
+    color: #dbeafe;
+    text-decoration: none;
+    border-radius: 0.55rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+
+  .quick-nav__btn:hover,
+  .quick-nav__btn:focus-visible {
+    border-color: rgba(103, 232, 249, 0.8);
+    color: #ecfeff;
+  }
+
+  @media (max-width: 640px) {
+    .quick-nav {
+      left: 0.7rem !important;
+      top: 4.9rem !important;
+      right: auto !important;
+      bottom: auto !important;
+    }
+
+    .quick-nav__btn {
+      padding: 0.45rem 0.62rem;
+      font-size: 0.68rem;
+    }
+  }
+</style>

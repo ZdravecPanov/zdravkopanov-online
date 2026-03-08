@@ -1,0 +1,146 @@
+---
+---
+
+<section class="hero">
+  <div class="hero__content">
+    <p class="hero__eyebrow">Portfolio</p>
+    <h1 class="hero__name">Zdravko Panov</h1>
+    <p class="hero__title">System Administrator | DevOps</p>
+    <p class="hero__subtitle">Monitoring | Automation | Observability</p>
+
+    <div class="hero__actions">
+      <a href="/projects" class="btn btn--primary">Projects</a>
+      <a href="https://github.com/ZdravecPanov/zdravkopanov-online" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2.2rem 1.5rem 0.8rem;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.18), transparent 40%),
+      radial-gradient(circle at 85% 10%, rgba(6, 182, 212, 0.14), transparent 35%),
+      linear-gradient(140deg, #05070b 0%, #0a1117 45%, #02070d 100%);
+    color: #e2e8f0;
+  }
+
+  .hero__content {
+    margin: 0 auto 0 clamp(1rem, 7vw, 6rem);
+    max-width: 1360px;
+    width: 100%;
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    margin: 0 0 1rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(20, 184, 166, 0.45);
+    border-radius: 999px;
+    color: #5eead4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .hero__name {
+    margin: 0;
+    font-size: clamp(2.2rem, 5.2vw, 3.5rem);
+    line-height: 1.05;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    letter-spacing: -0.02em;
+    color: #f8fafc;
+  }
+
+  .hero__title {
+    margin: 0.85rem 0 0.5rem;
+    color: #38bdf8;
+    font-size: clamp(1rem, 2.1vw, 1.35rem);
+    font-weight: 500;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  .hero__subtitle {
+    margin: 0 0 1.2rem;
+    color: #94a3b8;
+    font-size: 1rem;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    padding: 0.72rem 1.15rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    border: 1px solid transparent;
+    transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid rgba(45, 212, 191, 0.55);
+    outline-offset: 2px;
+  }
+
+  .btn--primary {
+    background: linear-gradient(120deg, #14b8a6, #22d3ee);
+    color: #041018;
+    border-color: rgba(19, 235, 199, 0.35);
+    box-shadow: 0 10px 24px rgba(34, 211, 238, 0.18);
+  }
+
+  .btn--secondary {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(56, 189, 248, 0.38);
+    color: #bae6fd;
+  }
+
+  .btn--primary:hover,
+  .btn--primary:focus-visible {
+    border-color: #99f6e4;
+  }
+
+  .btn--secondary:hover,
+  .btn--secondary:focus-visible {
+    border-color: #67e8f9;
+    box-shadow: 0 6px 18px rgba(45, 212, 191, 0.2);
+  }
+
+  @media (max-width: 980px) {
+    .hero__content {
+      margin: 0 auto;
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 34vh;
+      padding-top: 2rem;
+      padding-bottom: 0.8rem;
+    }
+  }
+</style>

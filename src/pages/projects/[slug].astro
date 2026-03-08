@@ -1,0 +1,469 @@
+﻿---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+const isDirectVideo = (url: string) => /\.(mp4|webm|ogg)$/i.test(url);
+const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monitoring'].includes(project.slug);
+---
+
+<Layout>
+  <main class="project-page">
+    <section class="project-page__inner">
+      <p class="project-page__eyebrow">Project</p>
+      <h1 class="project-page__title">{project.data.title}</h1>
+      <p class="project-page__description">{project.data.description}</p>
+
+      <article class="project-page__content">
+        <Content />
+      </article>
+
+      {project.data.images && project.data.images.length > 0 && (
+        <div class="project-gallery">
+          {project.data.images.map((img, index) => (
+            <div class="project-gallery__item">
+              {enableLightbox ? (
+                <a class="media-thumb" href={`#img-${index}`} aria-label="Open screenshot">
+                  <img src={img} alt="Project screenshot" loading="lazy" />
+                </a>
+              ) : (
+                <a href={img} target="_blank" rel="noopener noreferrer">
+                  <img src={img} alt="Project screenshot" loading="lazy" />
+                </a>
+              )}
+              {project.data.imageCaptions?.[index] && (
+                <p class="media-caption">{project.data.imageCaptions[index]}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {project.data.videos && project.data.videos.length > 0 && (
+        <div class="project-videos-wrap">
+          <h3 class="project-media-heading">Short walkthrough of the Windows monitoring dashboard and panel flow.</h3>
+          <div class="project-videos">
+            {project.data.videos.map((videoUrl, index) => (
+              <div class="project-videos__item">
+                {enableLightbox ? (
+                  <a class="media-thumb media-thumb--video" href={`#vid-${index}`} aria-label="Open video">
+                    {isDirectVideo(videoUrl) ? (
+                      <video muted playsinline preload="metadata">
+                        <source src={videoUrl} />
+                      </video>
+                    ) : (
+                      <span class="project-video__placeholder">Open video</span>
+                    )}
+                    <span class="video-play" aria-hidden="true"></span>
+                  </a>
+                ) : isDirectVideo(videoUrl) ? (
+                  <video controls preload="metadata">
+                    <source src={videoUrl} />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <iframe
+                    src={videoUrl}
+                    title="Project video"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                )}
+                {project.data.videoCaptions?.[index] && (
+                  <p class="media-caption">{project.data.videoCaptions[index]}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {enableLightbox && project.data.images && project.data.images.map((img, index) => (
+        <div class="media-modal" id={`img-${index}`}>
+          <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
+          <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
+            <a class="media-modal__close" href="#">Close</a>
+            <img src={img} alt="Expanded screenshot" loading="lazy" />
+          </div>
+        </div>
+      ))}
+
+      {enableLightbox && project.data.videos && project.data.videos.map((videoUrl, index) => (
+        <div class="media-modal" id={`vid-${index}`}>
+          <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
+          <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded video">
+            <a class="media-modal__close" href="#">Close</a>
+            {isDirectVideo(videoUrl) ? (
+              <video controls autoplay>
+                <source src={videoUrl} />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <iframe
+                src={videoUrl}
+                title="Expanded video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            )}
+          </div>
+        </div>
+      ))}
+
+      <ul class="project-page__tags" aria-label="Tech stack">
+        {project.data.stack.map((tag: string) => <li>{tag}</li>)}
+      </ul>
+
+      <a class="project-page__link" href={project.data.github} target="_blank" rel="noopener noreferrer">
+        View on GitHub
+      </a>
+    </section>    <script is:inline>
+      (() => {
+        const isMediaHash = (hash) => /^#(img|vid)-\d+$/.test(hash);
+
+        const closeModal = () => {
+          if (!isMediaHash(window.location.hash)) return;
+          const x = window.scrollX;
+          const y = window.scrollY;
+          window.location.hash = '';
+          if (history.replaceState) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
+          window.scrollTo(x, y);
+        };
+
+        const handleEscape = (event) => {
+          const isEscape = event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27;
+          if (!isEscape) return;
+          closeModal();
+        };
+
+        window.addEventListener('keydown', handleEscape, true);
+        window.addEventListener('keyup', handleEscape, true);
+        document.addEventListener('keydown', handleEscape, true);
+      })();
+    </script>
+  </main>
+</Layout>
+
+<style>
+  .project-page {
+    min-height: 100vh;
+    padding: 2.6rem 1.5rem 3rem;
+    background:
+      radial-gradient(circle at 80% 14%, rgba(6, 182, 212, 0.16), transparent 36%),
+      radial-gradient(circle at 15% 88%, rgba(16, 185, 129, 0.12), transparent 34%),
+      linear-gradient(150deg, #02070d 0%, #070f17 45%, #02070d 100%);
+    color: #e2e8f0;
+  }
+
+  .project-page__inner {
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+  .project-page__eyebrow {
+    display: inline-block;
+    margin: 0 0 1rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(20, 184, 166, 0.45);
+    border-radius: 999px;
+    color: #5eead4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-page__title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #f8fafc;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    letter-spacing: -0.02em;
+  }
+
+  .project-page__description {
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  .project-page__content {
+    margin-top: 0.9rem;
+    border: 1px solid rgba(100, 116, 139, 0.35);
+    border-radius: 0.9rem;
+    padding: 1.2rem;
+    background: rgba(2, 6, 12, 0.65);
+    line-height: 1.6;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #cbd5e1;
+  }
+
+  .project-page__content :global(h2),
+  .project-page__content :global(h3),
+  .project-page__content :global(h4) {
+    color: #e2e8f0;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-page__content :global(a) {
+    color: #67e8f9;
+  }
+
+  .project-gallery {
+    margin-top: 1.2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.9rem;
+    position: relative;
+    z-index: 5;
+  }
+
+  .project-gallery__item,
+  .project-videos__item {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .media-thumb {
+    display: block;
+  }
+
+  .project-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+  }
+
+  .media-caption {
+    margin: 0;
+    color: #9fb0bf;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  .project-videos-wrap {
+    margin-top: 1rem;
+  }
+
+  .project-media-heading {
+    margin: 0 0 0.7rem;
+    color: #67e8f9;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-videos {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .project-videos video,
+  .project-videos iframe {
+    width: 100%;
+    min-height: 220px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.65rem;
+    background: #000;
+  }
+
+  .project-videos .media-thumb video {
+    min-height: 200px;
+    object-fit: cover;
+  }
+
+  .video-play {
+    position: absolute;
+    inset: auto auto 0.6rem 0.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 999px;
+    background: rgba(2, 8, 20, 0.82);
+    border: 1px solid rgba(125, 211, 252, 0.4);
+    display: grid;
+    place-items: center;
+  }
+
+  .video-play::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 0.32rem solid transparent;
+    border-bottom: 0.32rem solid transparent;
+    border-left: 0.5rem solid #67e8f9;
+    margin-left: 0.08rem;
+  }
+
+  .project-video__placeholder {
+    display: grid;
+    place-items: center;
+    min-height: 220px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.65rem;
+    color: #cbd5e1;
+    background: rgba(2, 8, 20, 0.72);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .media-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-modal:target {
+    display: flex;
+  }
+
+  .media-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 8, 20, 0.86);
+  }
+
+  .media-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(1280px, 100%);
+    max-height: 92vh;
+  }
+
+  .media-modal__close {
+    margin-bottom: 0.6rem;
+    margin-left: auto;
+    display: block;
+    width: fit-content;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    border-radius: 0.5rem;
+    background: rgba(15, 23, 42, 0.85);
+    color: #e2e8f0;
+    padding: 0.45rem 0.7rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .media-modal__dialog img,
+  .media-modal__dialog video,
+  .media-modal__dialog iframe {
+    width: 100%;
+    max-height: 85vh;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: #000;
+  }
+
+  .project-page__tags {
+    list-style: none;
+    margin: 1rem 0 1.4rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .project-page__tags li {
+    font-size: 0.76rem;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #67e8f9;
+    border-radius: 999px;
+    padding: 0.28rem 0.68rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-page__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0.68rem 1rem;
+    border-radius: 0.55rem;
+    border: 1px solid rgba(45, 212, 191, 0.45);
+    color: #ecfeff;
+    background: rgba(6, 182, 212, 0.12);
+    margin-bottom: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.86rem;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+    transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+  }
+
+  .project-page__link:hover,
+  .project-page__link:focus-visible {
+    transform: translateY(-2px);
+    border-color: #7dd3fc;
+    background: rgba(125, 211, 252, 0.2);
+  }
+
+  @media (max-width: 980px) {
+    .project-page {
+      padding-top: 2.2rem;
+    }
+
+    .project-page__inner {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-page {
+      padding-top: 2rem;
+      padding-bottom: 2.4rem;
+    }
+
+    .project-gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .project-gallery img {
+      height: 165px;
+    }
+
+    .project-page__content {
+      padding: 1rem;
+    }
+  }
+</style>
+
+
+
+
+
+
+
