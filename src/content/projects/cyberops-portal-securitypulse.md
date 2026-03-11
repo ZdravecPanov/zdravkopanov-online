@@ -118,10 +118,10 @@ This pipeline model keeps the output deterministic and easier to validate during
 ## Current Status and Next Expansion
 The project is operational and presentation-ready, with real workflow value for daily triage.
 
-Planned next step:
-- add one additional short video focused only on remediation workflow from queue to validated fix status.
+Planned next step:`r`n- improve platform functionality, streamline analyst workflows, and address UI/logic bugs identified during daily use.
 
 ## Outcome
 CyberOps Portal demonstrates not only tool usage, but full-stack DevOps + Security thinking:
 architecture, reliability, exposure model, data flow, and actionable operations in one coherent system.
+
 
