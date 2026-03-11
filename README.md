@@ -7,6 +7,9 @@ Personal portfolio website built with Astro.
 - TypeScript
 - Markdown content collections
 
+## Monitoring Documentation
+- [Prometheus + Grafana Monitoring Setup (Linux + Windows)](./MONITORING-SETUP-PROMETHEUS-GRAFANA.md)
+
 ## Local Development
 ```bash
 npm install

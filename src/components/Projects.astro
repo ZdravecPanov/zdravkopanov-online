@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
+const flagshipSlug = 'cyberops-portal-securitypulse';
 
 const groupedProjects = projects.reduce((acc, project) => {
   const category = project.data.category || 'Other';
@@ -10,11 +11,20 @@ const groupedProjects = projects.reduce((acc, project) => {
   return acc;
 }, {} as Record<string, typeof projects>);
 
-const categoryOrder = ['Monitoring', 'Infrastructure', 'Automation'];
+for (const category of Object.keys(groupedProjects)) {
+  groupedProjects[category].sort((a, b) => {
+    if (a.slug === flagshipSlug) return -1;
+    if (b.slug === flagshipSlug) return 1;
+    return a.data.title.localeCompare(b.data.title);
+  });
+}
+
+const categoryOrder = ['Security', 'Monitoring', 'Infrastructure', 'Automation'];
 const categories = [
   ...categoryOrder.filter((category) => groupedProjects[category]?.length),
   ...Object.keys(groupedProjects).filter((category) => !categoryOrder.includes(category)),
 ];
+const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitoring';
 ---
 
 <section class="projects" id="projects">
@@ -32,7 +42,7 @@ const categories = [
               type="button"
               data-category={category}
               role="tab"
-              aria-selected={category === 'Monitoring' ? 'true' : 'false'}
+              aria-selected={category === defaultCategory ? 'true' : 'false'}
             >
               {category}
             </button>
@@ -44,7 +54,7 @@ const categories = [
         <span class="sr-only">Choose category</span>
         <select class="projects__select" aria-label="Choose project category">
           <option value="All">All</option>
-          {categories.map((category) => <option value={category} selected={category === 'Monitoring'}>{category}</option>)}
+          {categories.map((category) => <option value={category} selected={category === defaultCategory}>{category}</option>)}
         </select>
       </label>
     </div>
@@ -54,18 +64,24 @@ const categories = [
         <div class="projects__category" data-category-section={category}>
           <h3 class="projects__category-title">{category}</h3>
           <div class="projects__grid">
-            {groupedProjects[category].map((project) => (
-              <article class="project-card">
-                <h4 class="project-card__title">
-                  <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
-                </h4>
-                <p class="project-card__description">{project.data.description}</p>
-                <ul class="project-card__tags" aria-label="Tech stack">
-                  {project.data.stack.map((tag) => <li>{tag}</li>)}
-                </ul>
-                <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
-              </article>
-            ))}
+            {groupedProjects[category].map((project) => {
+              const isFlagship = project.slug === flagshipSlug;
+
+              return (
+                <article class:list={['project-card', isFlagship && 'project-card--flagship']}>
+                  {isFlagship && <p class="project-card__badge">Flagship Project</p>}
+
+                  <h4 class="project-card__title">
+                    <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
+                  </h4>
+                  <p class="project-card__description">{project.data.description}</p>
+                  <ul class="project-card__tags" aria-label="Tech stack">
+                    {project.data.stack.map((tag) => <li>{tag}</li>)}
+                  </ul>
+                  <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
+                </article>
+              );
+            })}
           </div>
         </div>
       ))
@@ -100,7 +116,6 @@ const categories = [
       }
     };
 
-    const defaultCategory = 'Monitoring';
     setActive(defaultCategory);
 
     tabs.forEach((tab) => {
@@ -239,11 +254,28 @@ const categories = [
     transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
   }
 
+  .project-card--flagship {
+    border-color: rgba(20, 184, 166, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(20, 184, 166, 0.25), 0 16px 34px rgba(2, 8, 20, 0.5);
+    background:
+      radial-gradient(circle at 92% 8%, rgba(6, 182, 212, 0.2), transparent 28%),
+      rgba(2, 6, 12, 0.82);
+  }
+
   .project-card:hover,
   .project-card:focus-within {
     transform: translateY(-3px);
     border-color: rgba(34, 211, 238, 0.55);
     box-shadow: 0 12px 28px rgba(3, 7, 18, 0.45);
+  }
+
+  .project-card__badge {
+    margin: 0 0 0.65rem;
+    color: #99f6e4;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
   }
 
   .project-card__title {
@@ -330,6 +362,12 @@ const categories = [
     border: 0;
   }
 
+  @media (min-width: 1000px) {
+    .project-card--flagship {
+      grid-column: span 2;
+    }
+  }
+
   @media (max-width: 980px) {
     .projects__inner {
       margin: 0 auto;
@@ -358,8 +396,3 @@ const categories = [
     }
   }
 </style>
-
-
-
-
-
