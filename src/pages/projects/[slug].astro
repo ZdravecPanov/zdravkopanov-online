@@ -15,7 +15,7 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 
 const isDirectVideo = (url: string) => /\.(mp4|webm|ogg)$/i.test(url);
-const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monitoring', 'cyberops-portal-securitypulse'].includes(project.slug);
+const enableLightbox = Boolean((project.data.images && project.data.images.length) || (project.data.videos && project.data.videos.length));
 ---
 
 <Layout>
@@ -98,6 +98,24 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
           <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
           <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
             <a class="media-modal__close" href="#">Close</a>
+            {project.data.images.length > 1 && (
+              <>
+                <a
+                  class="media-modal__nav media-modal__nav--prev"
+                  href={`#img-${index === 0 ? project.data.images.length - 1 : index - 1}`}
+                  aria-label="Previous screenshot"
+                >
+                  ‹
+                </a>
+                <a
+                  class="media-modal__nav media-modal__nav--next"
+                  href={`#img-${index === project.data.images.length - 1 ? 0 : index + 1}`}
+                  aria-label="Next screenshot"
+                >
+                  ›
+                </a>
+              </>
+            )}
             <img src={img} alt="Expanded screenshot" loading="lazy" />
           </div>
         </div>
@@ -157,9 +175,35 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
           closeModal();
         };
 
+
+        const handleArrowNavigation = (event) => {
+          if (!isMediaHash(window.location.hash)) return;
+          const match = window.location.hash.match(/^#img-(\d+)$/);
+          if (!match) return;
+
+          const totalImages = document.querySelectorAll('.media-modal[id^="img-"]').length;
+          if (totalImages < 2) return;
+
+          const currentIndex = Number(match[1]);
+          if (Number.isNaN(currentIndex)) return;
+
+          if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            const nextIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+            window.location.hash = `img-${nextIndex}`;
+          }
+
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            const prevIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+            window.location.hash = `img-${prevIndex}`;
+          }
+        };
         window.addEventListener('keydown', handleEscape, true);
         window.addEventListener('keyup', handleEscape, true);
         document.addEventListener('keydown', handleEscape, true);
+        window.addEventListener('keydown', handleArrowNavigation, true);
+        document.addEventListener('keydown', handleArrowNavigation, true);
       })();
     </script>
   </main>
@@ -403,6 +447,39 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
     font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
   }
 
+
+  .media-modal__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    background: rgba(2, 8, 20, 0.9);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .media-modal__nav:hover,
+  .media-modal__nav:focus-visible {
+    border-color: rgba(103, 232, 249, 0.85);
+    color: #ecfeff;
+  }
+
+  .media-modal__nav--prev {
+    left: 0.7rem;
+  }
+
+  .media-modal__nav--next {
+    right: 0.7rem;
+  }
   .media-modal__dialog img,
   .media-modal__dialog video,
   .media-modal__dialog iframe {
@@ -485,6 +562,7 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
     }
   }
 </style>
+
 
 
 
