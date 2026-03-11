@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+﻿import { defineCollection, z } from 'astro:content';
 
 const projects = defineCollection({
   type: 'content',
@@ -8,6 +8,7 @@ const projects = defineCollection({
     description: z.string(),
     stack: z.array(z.string()),
     github: z.string().url(),
+    hideGithub: z.boolean().default(false),
     images: z.array(z.string()).default([]),
     imageCaptions: z.array(z.string()).default([]),
     videos: z.array(z.string()).default([]),

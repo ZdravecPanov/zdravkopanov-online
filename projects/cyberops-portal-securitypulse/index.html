@@ -10,43 +10,88 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
-</script>   <main class="project-page" data-astro-cid-ovxcmftc> <section class="project-page__inner" data-astro-cid-ovxcmftc> <p class="project-page__eyebrow" data-astro-cid-ovxcmftc>Project</p> <h1 class="project-page__title" data-astro-cid-ovxcmftc>CyberOps Portal (SecurityPulse)</h1> <p class="project-page__description" data-astro-cid-ovxcmftc>Self-hosted DevOps Security Intelligence platform with HA IIS backend, NGINX load balancing, Cloudflare Tunnel edge exposure, and integrated Prometheus/Grafana/Zabbix monitoring.</p> <article class="project-page__content" data-astro-cid-ovxcmftc> <h2 id="project-overview">Project Overview</h2>
-<p>CyberOps Portal is a local-first, production-style security and infrastructure platform built to answer one operational question clearly: <strong>what should the team fix today</strong>.</p>
-<p>The platform combines live threat intelligence feeds with environment-based prioritization and an HA web delivery model.</p>
-<h2 id="architecture">Architecture</h2>
+</script>   <main class="project-page" data-astro-cid-ovxcmftc> <section class="project-page__inner" data-astro-cid-ovxcmftc> <p class="project-page__eyebrow" data-astro-cid-ovxcmftc>Project</p> <h1 class="project-page__title" data-astro-cid-ovxcmftc>CyberOps Portal (SecurityPulse)</h1> <p class="project-page__description" data-astro-cid-ovxcmftc>Self-hosted DevOps Security Intelligence platform with HA IIS backend, NGINX load balancing, Cloudflare Tunnel edge exposure, and integrated Prometheus/Grafana observability.</p> <article class="project-page__content" data-astro-cid-ovxcmftc> <h2 id="project-overview">Project Overview</h2>
+<p>CyberOps Portal (SecurityPulse) is my largest and most complete lab project: a self-hosted, production-style security operations platform built to answer one concrete daily question:</p>
+<p><strong>What should be fixed first, and why?</strong></p>
+<p>The platform combines threat intelligence ingestion, environment-aware prioritization, and stable service delivery in a realistic infrastructure layout.</p>
+<h2 id="project-goal">Project Goal</h2>
+<p>The goal is not just “collect data”. The goal is to reduce decision latency for operations and security workflows.</p>
+<p>The portal is designed to help a team move from raw vulnerability intelligence to actionable triage in minutes, not hours.</p>
+<h2 id="lab-scope-and-environment">Lab Scope and Environment</h2>
+<p>The lab is fully self-hosted and runs in a segmented virtualized environment.</p>
 <ul>
-<li><strong>Public edge</strong>: Cloudflare Tunnel</li>
-<li><strong>Load balancer</strong>: LB01 (NGINX)</li>
-<li><strong>Web tier</strong>: WEB01 + WEB02 (Windows Server + IIS, active-active)</li>
-<li><strong>Data tier</strong>: DATA01 (PostgreSQL + collector pipeline)</li>
-<li><strong>Monitoring tier</strong>: Prometheus + Grafana + Zabbix</li>
-<li><strong>Network model</strong>: segmented LAN + DMZ design</li>
+<li>Hypervisor layer: VMware ESXi</li>
+<li>App stack: ASP.NET Core (.NET 8)</li>
+<li>Web delivery: IIS web nodes behind NGINX reverse proxy/load balancer</li>
+<li>Data storage: PostgreSQL (primary data), SQLite (lightweight/local workflows)</li>
+<li>Edge exposure: Cloudflare Tunnel (no direct public port-forwarding)</li>
+<li>Observability: Prometheus + Grafana</li>
 </ul>
-<h2 id="key-features">Key Features</h2>
+<h2 id="infrastructure-topology">Infrastructure Topology</h2>
 <ul>
-<li>CVE/KEV/EPSS/MSRC/CISA-based threat ingestion</li>
-<li>Actionable morning briefing and “Fix Today” workflow</li>
-<li>Environment profile matching (vendor/platform/cloud)</li>
-<li>Fallback-safe data behavior and snapshot history</li>
-<li>CSV export and operational triage views</li>
-<li>Linux + Windows monitoring with alerting channels</li>
+<li><strong>Public edge</strong>: Cloudflare Tunnel terminates external access and forwards traffic safely into the internal network.</li>
+<li><strong>Load balancing layer</strong>: NGINX node (LB01) distributes traffic to the web tier.</li>
+<li><strong>Web tier</strong>: WEB01 + WEB02 (Windows Server + IIS) in active-active style serving the portal.</li>
+<li><strong>Data tier</strong>: DATA01 with PostgreSQL and ingestion/normalization pipelines.</li>
+<li><strong>Observability tier</strong>: Prometheus and Grafana for health, resource, and service visibility.</li>
+<li><strong>Network model</strong>: segmented lab topology with internal trust boundaries and controlled exposure.</li>
 </ul>
-<h2 id="operational-highlights">Operational Highlights</h2>
+<h2 id="portal-capabilities-siteproduct">Portal Capabilities (Site/Product)</h2>
+<p>The SecurityPulse site is built as an operator-facing console, not a generic dashboard page.</p>
+<p>Core functional blocks:</p>
 <ul>
-<li>High-availability IIS backend behind NGINX</li>
-<li>Public access without direct router port exposure</li>
-<li>Centralized observability with probe-based and host-based checks</li>
-<li>Security-focused dashboards and alert routing ready for team usage</li>
+<li><strong>Threat Intake</strong>: ingest and normalize data from CVE, KEV, EPSS, MSRC, and CISA-style sources.</li>
+<li><strong>Fix-Today Queue</strong>: prioritized shortlist of high-impact items based on severity and environment context.</li>
+<li><strong>Environment Matching</strong>: map advisories to relevant vendor/platform/cloud profile attributes.</li>
+<li><strong>Operational Briefing</strong>: morning-ready summary view for quick standup-level decisions.</li>
+<li><strong>Triage Workflow</strong>: move from advisory details to action state with practical filtering and export.</li>
+<li><strong>Historical Traceability</strong>: preserve snapshots and fallback-safe behavior when external feeds change or fail.</li>
 </ul>
-<h2 id="live-and-repository">Live and Repository</h2>
+<h2 id="data-pipeline-logic">Data Pipeline Logic</h2>
+<ol>
+<li>Pull feeds from multiple security intelligence sources.</li>
+<li>Normalize fields and deduplicate records.</li>
+<li>Enrich with context (severity signals, exploitability indicators, recency).</li>
+<li>Score and rank for actionable prioritization.</li>
+<li>Serve results in the portal UI and operational exports.</li>
+</ol>
+<p>This pipeline model keeps the output deterministic and easier to validate during testing.</p>
+<h2 id="high-availability-and-reliability-decisions">High Availability and Reliability Decisions</h2>
+<ul>
+<li>IIS is deployed on two web nodes to avoid single-node dependency.</li>
+<li>NGINX handles distribution and protects backend nodes from direct external access.</li>
+<li>Cloudflare Tunnel removes the need for direct inbound router exposure.</li>
+<li>Data persistence is centralized to keep application state consistent.</li>
+<li>Observability is integrated from the beginning rather than added late.</li>
+</ul>
+<h2 id="security-and-operational-design-choices">Security and Operational Design Choices</h2>
+<ul>
+<li>Minimized public attack surface through tunnel-based exposure.</li>
+<li>Layered routing between edge, LB, and internal tiers.</li>
+<li>Clear separation between web handling, business logic, and data handling.</li>
+<li>Monitoring-backed operations for faster fault isolation and recovery.</li>
+</ul>
+<h2 id="what-was-built-in-practice">What Was Built in Practice</h2>
+<ul>
+<li>End-to-end lab architecture and service wiring.</li>
+<li>Portal backend and UI workflow for security prioritization.</li>
+<li>HA delivery model with NGINX + dual IIS nodes.</li>
+<li>Data ingestion and ranking flow for daily usage.</li>
+<li>Prometheus/Grafana observability baseline for hosts and services.</li>
+</ul>
+<h2 id="live-access">Live Access</h2>
 <ul>
 <li>Live: <a href="https://securitypulse.online">securitypulse.online</a></li>
-<li>Repository: <a href="https://github.com/ZdravecPanov/CyberOps-Portal">CyberOps-Portal</a></li>
+</ul>
+<h2 id="current-status-and-next-expansion">Current Status and Next Expansion</h2>
+<p>The project is operational and presentation-ready, with real workflow value for daily triage.</p>
+<p>Planned next step:</p>
+<ul>
+<li>add a larger screenshot set that walks through full workflow stages (overview, fix queue, advisory detail, filtering, and export flow), so the project story is even clearer visually.</li>
 </ul>
 <h2 id="outcome">Outcome</h2>
-<p>A realistic DevOps + Security lab that is presentation-ready, useful for daily operations, and extensible toward full production hardening.</p> </article> <div class="project-gallery" data-astro-cid-ovxcmftc> <div class="project-gallery__item" data-astro-cid-ovxcmftc> <a href="/images/Windows%20Security%20Monitoring%20Dashboard/Windows%20security%20Overview.png" target="_blank" rel="noopener noreferrer" data-astro-cid-ovxcmftc> <img src="/images/Windows%20Security%20Monitoring%20Dashboard/Windows%20security%20Overview.png" alt="Project screenshot" loading="lazy" data-astro-cid-ovxcmftc> </a> <p class="media-caption" data-astro-cid-ovxcmftc>Security telemetry and posture dashboard (example panel set).</p> </div><div class="project-gallery__item" data-astro-cid-ovxcmftc> <a href="/images/prometheus-grafana-monitoring/Monitoring-CPU.png" target="_blank" rel="noopener noreferrer" data-astro-cid-ovxcmftc> <img src="/images/prometheus-grafana-monitoring/Monitoring-CPU.png" alt="Project screenshot" loading="lazy" data-astro-cid-ovxcmftc> </a> <p class="media-caption" data-astro-cid-ovxcmftc>Infrastructure monitoring panel from the observability layer.</p> </div> </div>    <ul class="project-page__tags" aria-label="Tech stack" data-astro-cid-ovxcmftc> <li data-astro-cid-ovxcmftc>ASP.NET Core (.NET 8)</li><li data-astro-cid-ovxcmftc>IIS</li><li data-astro-cid-ovxcmftc>NGINX</li><li data-astro-cid-ovxcmftc>Windows Server</li><li data-astro-cid-ovxcmftc>Ubuntu Server</li><li data-astro-cid-ovxcmftc>PostgreSQL</li><li data-astro-cid-ovxcmftc>SQLite</li><li data-astro-cid-ovxcmftc>Prometheus</li><li data-astro-cid-ovxcmftc>Grafana</li><li data-astro-cid-ovxcmftc>Zabbix</li><li data-astro-cid-ovxcmftc>Cloudflare Tunnel</li><li data-astro-cid-ovxcmftc>VMware ESXi</li> </ul> <a class="project-page__link" href="https://github.com/ZdravecPanov/CyberOps-Portal" target="_blank" rel="noopener noreferrer" data-astro-cid-ovxcmftc>
-View on GitHub
-</a> </section> <script>
+<p>CyberOps Portal demonstrates not only tool usage, but full-stack DevOps + Security thinking:
+architecture, reliability, exposure model, data flow, and actionable operations in one coherent system.</p> </article> <div class="project-gallery" data-astro-cid-ovxcmftc> <div class="project-gallery__item" data-astro-cid-ovxcmftc> <a href="/images/Windows%20Security%20Monitoring%20Dashboard/Windows%20security%20Overview.png" target="_blank" rel="noopener noreferrer" data-astro-cid-ovxcmftc> <img src="/images/Windows%20Security%20Monitoring%20Dashboard/Windows%20security%20Overview.png" alt="Project screenshot" loading="lazy" data-astro-cid-ovxcmftc> </a> <p class="media-caption" data-astro-cid-ovxcmftc>Security telemetry and posture dashboard (example panel set).</p> </div><div class="project-gallery__item" data-astro-cid-ovxcmftc> <a href="/images/prometheus-grafana-monitoring/Monitoring-CPU.png" target="_blank" rel="noopener noreferrer" data-astro-cid-ovxcmftc> <img src="/images/prometheus-grafana-monitoring/Monitoring-CPU.png" alt="Project screenshot" loading="lazy" data-astro-cid-ovxcmftc> </a> <p class="media-caption" data-astro-cid-ovxcmftc>Infrastructure monitoring panel from the observability layer.</p> </div> </div>    <ul class="project-page__tags" aria-label="Tech stack" data-astro-cid-ovxcmftc> <li data-astro-cid-ovxcmftc>ASP.NET Core (.NET 8)</li><li data-astro-cid-ovxcmftc>IIS</li><li data-astro-cid-ovxcmftc>NGINX</li><li data-astro-cid-ovxcmftc>Windows Server</li><li data-astro-cid-ovxcmftc>Ubuntu Server</li><li data-astro-cid-ovxcmftc>PostgreSQL</li><li data-astro-cid-ovxcmftc>SQLite</li><li data-astro-cid-ovxcmftc>Prometheus</li><li data-astro-cid-ovxcmftc>Grafana</li><li data-astro-cid-ovxcmftc>Cloudflare Tunnel</li><li data-astro-cid-ovxcmftc>VMware ESXi</li> </ul>  </section> <script>
       (() => {
         const isMediaHash = (hash) => /^#(img|vid)-\d+$/.test(hash);
 

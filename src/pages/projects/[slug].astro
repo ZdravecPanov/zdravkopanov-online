@@ -126,11 +126,14 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
       <ul class="project-page__tags" aria-label="Tech stack">
         {project.data.stack.map((tag: string) => <li>{tag}</li>)}
       </ul>
+      {!project.data.hideGithub && (
+        <a class="project-page__link" href={project.data.github} target="_blank" rel="noopener noreferrer">
+          View on GitHub
+        </a>
+      )}
+    </section>
 
-      <a class="project-page__link" href={project.data.github} target="_blank" rel="noopener noreferrer">
-        View on GitHub
-      </a>
-    </section>    <script is:inline>
+    <script is:inline>
       (() => {
         const isMediaHash = (hash) => /^#(img|vid)-\d+$/.test(hash);
 
@@ -460,6 +463,12 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
     }
   }
 </style>
+
+
+
+
+
+
 
 
 
