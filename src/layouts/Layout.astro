@@ -1,4 +1,4 @@
----
+﻿---
 import Navbar from '../components/Navbar.astro';
 
 const showQuickNav = Astro.url.pathname !== '/';
@@ -61,9 +61,9 @@ const showQuickNav = Astro.url.pathname !== '/';
 
   .quick-nav {
     position: fixed;
-    left: 1rem !important;
+    left: auto !important;
     top: 5.1rem !important;
-    right: auto !important;
+    right: 1rem !important;
     bottom: auto !important;
     z-index: 70;
     display: flex;
@@ -93,9 +93,9 @@ const showQuickNav = Astro.url.pathname !== '/';
 
   @media (max-width: 640px) {
     .quick-nav {
-      left: 0.7rem !important;
+      left: auto !important;
       top: 4.9rem !important;
-      right: auto !important;
+      right: 0.7rem !important;
       bottom: auto !important;
     }
 
@@ -105,3 +105,4 @@ const showQuickNav = Astro.url.pathname !== '/';
     }
   }
 </style>
+
