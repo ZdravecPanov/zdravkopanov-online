@@ -15,13 +15,16 @@ const { project } = Astro.props;
 const { Content } = await project.render();
 
 const isDirectVideo = (url: string) => /\.(mp4|webm|ogg)$/i.test(url);
-const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monitoring'].includes(project.slug);
+const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monitoring', 'cyberops-portal-securitypulse'].includes(project.slug);
 ---
 
 <Layout>
   <main class="project-page">
     <section class="project-page__inner">
       <p class="project-page__eyebrow">Project</p>
+      {project.data.liveUrl && (
+        <p class="project-page__live"><a href={project.data.liveUrl} target="_blank" rel="noopener noreferrer">securitypulse.online</a></p>
+      )}
       <h1 class="project-page__title">{project.data.title}</h1>
       <p class="project-page__description">{project.data.description}</p>
 
@@ -52,7 +55,7 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
 
       {project.data.videos && project.data.videos.length > 0 && (
         <div class="project-videos-wrap">
-          <h3 class="project-media-heading">Short walkthrough of the Windows monitoring dashboard and panel flow.</h3>
+          <h3 class="project-media-heading">{project.data.mediaHeading ?? "Project walkthrough and panel flow."}</h3>
           <div class="project-videos">
             {project.data.videos.map((videoUrl, index) => (
               <div class="project-videos__item">
@@ -189,6 +192,25 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
     text-transform: uppercase;
     font-size: 0.75rem;
     font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-page__live {
+    margin: 0 0 0.75rem;
+  }
+
+  .project-page__live a {
+    color: #67e8f9;
+    text-decoration: none;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-page__live a:hover,
+  .project-page__live a:focus-visible {
+    color: #a5f3fc;
+    text-decoration: underline;
   }
 
   .project-page__title {
@@ -463,6 +485,7 @@ const enableLightbox = ['prometheus-grafana-monitoring', 'windows-security-monit
     }
   }
 </style>
+
 
 
 

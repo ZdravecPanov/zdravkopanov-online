@@ -4,6 +4,8 @@ category: Security
 description: Self-hosted DevOps Security Intelligence platform with HA IIS backend, NGINX load balancing, Cloudflare Tunnel edge exposure, and integrated Prometheus/Grafana observability.
 github: https://github.com/ZdravecPanov/CyberOps-Portal
 hideGithub: true
+liveUrl: https://securitypulse.online/
+mediaHeading: SecurityPulse walkthrough and analyst workflow flow.
 stack:
   - ASP.NET Core (.NET 8)
   - IIS
@@ -17,11 +19,27 @@ stack:
   - Cloudflare Tunnel
   - VMware ESXi
 images:
-  - /images/Windows%20Security%20Monitoring%20Dashboard/Windows%20security%20Overview.png
-  - /images/prometheus-grafana-monitoring/Monitoring-CPU.png
+  - /images/cyberops-securitypulse/01-overview.png
+  - /images/cyberops-securitypulse/02-fix-today-queue.png
+  - /images/cyberops-securitypulse/03-advisory-details.png
+  - /images/cyberops-securitypulse/04-filtering-and-priority.png
+  - /images/cyberops-securitypulse/05-environment-matching.png
+  - /images/cyberops-securitypulse/06-export-and-history.png
+  - /images/cyberops-securitypulse/07-architecture-and-data-flow.png
+  - /images/cyberops-securitypulse/08-operations-dashboard.png
 imageCaptions:
-  - Security telemetry and posture dashboard (example panel set).
-  - Infrastructure monitoring panel from the observability layer.
+  - Executive overview panel with live risk posture and top priority metrics for rapid daily triage.
+  - Fix-Today action queue showing the most urgent remediation targets for the current operations cycle.
+  - Advisory detail context view used to validate impact, exploitability, and actionable remediation steps.
+  - Filtering and priority controls for narrowing high-signal vulnerabilities by severity and operational relevance.
+  - Environment profile mapping where platform/vendor context is applied to improve prioritization accuracy.
+  - Export and historical workflow used for operational reporting, handoff, and traceable decision history.
+  - Infrastructure architecture and data-flow perspective of edge routing, app tier, and persistence layers.
+  - Operations and observability dashboard used to validate service health and delivery stability.
+videos:
+  - /images/cyberops-securitypulse/walkthrough-dashboard.mp4
+videoCaptions:
+  - "End-to-end walkthrough of the SecurityPulse analyst flow: overview, prioritization, and operational navigation."
 ---
 
 ## Project Overview
@@ -101,8 +119,9 @@ This pipeline model keeps the output deterministic and easier to validate during
 The project is operational and presentation-ready, with real workflow value for daily triage.
 
 Planned next step:
-- add a larger screenshot set that walks through full workflow stages (overview, fix queue, advisory detail, filtering, and export flow), so the project story is even clearer visually.
+- add one additional short video focused only on remediation workflow from queue to validated fix status.
 
 ## Outcome
 CyberOps Portal demonstrates not only tool usage, but full-stack DevOps + Security thinking:
 architecture, reliability, exposure model, data flow, and actionable operations in one coherent system.
+
