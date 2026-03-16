@@ -2,29 +2,26 @@
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const flagshipSlug = 'cyberops-portal-securitypulse';
 
-const groupedProjects = projects.reduce((acc, project) => {
-  const category = project.data.category || 'Other';
-  if (!acc[category]) acc[category] = [];
-  acc[category].push(project);
-  return acc;
-}, {} as Record<string, typeof projects>);
-
-for (const category of Object.keys(groupedProjects)) {
-  groupedProjects[category].sort((a, b) => {
-    if (a.slug === flagshipSlug) return -1;
-    if (b.slug === flagshipSlug) return 1;
-    return a.data.title.localeCompare(b.data.title);
-  });
-}
-
-const categoryOrder = ['Security', 'Monitoring', 'Infrastructure', 'Automation'];
-const categories = [
-  ...categoryOrder.filter((category) => groupedProjects[category]?.length),
-  ...Object.keys(groupedProjects).filter((category) => !categoryOrder.includes(category)),
+const completedSlugs = [
+  'cyberops-portal-securitypulse',
+  'prometheus-grafana-monitoring',
+  'windows-security-monitoring',
 ];
-const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitoring';
+
+const ongoingSlugs = ['windows-server-management'];
+
+const bySlug = new Map(projects.map((project) => [project.slug, project]));
+
+const pickBySlug = (slugs: string[]) => slugs
+  .map((slug) => bySlug.get(slug))
+  .filter(Boolean) as typeof projects;
+
+const completedProjects = pickBySlug(completedSlugs);
+const ongoingProjects = pickBySlug(ongoingSlugs);
+const plannedProjects = projects
+  .filter((project) => !completedSlugs.includes(project.slug) && !ongoingSlugs.includes(project.slug))
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <section class="projects" id="projects">
@@ -32,106 +29,69 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     <p class="projects__eyebrow">Case Studies</p>
     <h2 class="projects__title">Projects</h2>
 
-    <div class="projects__controls" aria-label="Project category filters">
-      <div class="projects__tabs" role="tablist" aria-label="Project categories">
-        <button class="projects__tab" type="button" data-category="All" role="tab" aria-selected="false">All</button>
-        {
-          categories.map((category) => (
-            <button
-              class="projects__tab"
-              type="button"
-              data-category={category}
-              role="tab"
-              aria-selected={category === defaultCategory ? 'true' : 'false'}
-            >
-              {category}
-            </button>
-          ))
-        }
-      </div>
+    <div class="projects__section">
+      <h3 class="projects__category-title">Completed</h3>
+      <div class="projects__grid">
+        {completedProjects.map((project) => {
+          const isFlagship = project.slug === 'cyberops-portal-securitypulse';
 
-      <label class="projects__select-wrap">
-        <span class="sr-only">Choose category</span>
-        <select class="projects__select" aria-label="Choose project category">
-          <option value="All">All</option>
-          {categories.map((category) => <option value={category} selected={category === defaultCategory}>{category}</option>)}
-        </select>
-      </label>
+          return (
+            <article class:list={['project-card', isFlagship && 'project-card--flagship']}>
+              {isFlagship && <p class="project-card__badge">Flagship Project</p>}
+              <h4 class="project-card__title">
+                <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
+              </h4>
+              <p class="project-card__description">{project.data.description}</p>
+              <ul class="project-card__tags" aria-label="Tech stack">
+                {project.data.stack.map((tag) => <li>{tag}</li>)}
+              </ul>
+              <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
+            </article>
+          );
+        })}
+      </div>
     </div>
 
-    {
-      categories.map((category) => (
-        <div class="projects__category" data-category-section={category}>
-          <h3 class="projects__category-title">{category}</h3>
-          <div class="projects__grid">
-            {groupedProjects[category].map((project) => {
-              const isFlagship = project.slug === flagshipSlug;
+    <div class="projects__section">
+      <h3 class="projects__category-title">Ongoing</h3>
+      <div class="projects__grid">
+        {ongoingProjects.map((project) => (
+          <article class="project-card">
+            <p class="project-card__badge">In Progress</p>
+            <h4 class="project-card__title">
+              <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
+            </h4>
+            <p class="project-card__description">{project.data.description}</p>
+            <ul class="project-card__tags" aria-label="Tech stack">
+              {project.data.stack.map((tag) => <li>{tag}</li>)}
+            </ul>
+            <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
+          </article>
+        ))}
+      </div>
+    </div>
 
-              return (
-                <article class:list={['project-card', isFlagship && 'project-card--flagship']}>
-                  {isFlagship && <p class="project-card__badge">Flagship Project</p>}
-
-                  <h4 class="project-card__title">
-                    <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
-                  </h4>
-                  <p class="project-card__description">{project.data.description}</p>
-                  <ul class="project-card__tags" aria-label="Tech stack">
-                    {project.data.stack.map((tag) => <li>{tag}</li>)}
-                  </ul>
-                  <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      ))
-    }
+    <div class="projects__section">
+      <h3 class="projects__category-title">Planned</h3>
+      <p class="projects__section-note">Предстои да бъдат направени.</p>
+      <div class="projects__grid">
+        {plannedProjects.map((project) => (
+          <article class="project-card project-card--planned">
+            <p class="project-card__badge project-card__badge--planned">Planned</p>
+            <h4 class="project-card__title">
+              <a class="project-card__title-link" href={`/projects/${project.slug}`}>{project.data.title}</a>
+            </h4>
+            <p class="project-card__description">{project.data.description}</p>
+            <ul class="project-card__tags" aria-label="Tech stack">
+              {project.data.stack.map((tag) => <li>{tag}</li>)}
+            </ul>
+            <a class="project-card__link" href={`/projects/${project.slug}`}>Open Project</a>
+          </article>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
-
-<script is:inline>
-  (() => {
-    const root = document.querySelector('#projects');
-    if (!root) return;
-
-    const sections = Array.from(root.querySelectorAll('[data-category-section]'));
-    const tabs = Array.from(root.querySelectorAll('.projects__tab'));
-    const select = root.querySelector('.projects__select');
-
-    const setActive = (category) => {
-      sections.forEach((section) => {
-        const sectionCategory = section.getAttribute('data-category-section');
-        const visible = category === 'All' || sectionCategory === category;
-        section.hidden = !visible;
-      });
-
-      tabs.forEach((tab) => {
-        const active = tab.getAttribute('data-category') === category;
-        tab.classList.toggle('is-active', active);
-        tab.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-
-      if (select && select.value !== category) {
-        select.value = category;
-      }
-    };
-
-    setActive(defaultCategory);
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const category = tab.getAttribute('data-category') || 'All';
-        setActive(category);
-      });
-    });
-
-    if (select) {
-      select.addEventListener('change', () => {
-        setActive(select.value || 'All');
-      });
-    }
-  })();
-</script>
 
 <style>
   .projects {
@@ -169,60 +129,8 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     letter-spacing: -0.02em;
   }
 
-  .projects__controls {
-    margin-bottom: 1.5rem;
-  }
-
-  .projects__tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-  }
-
-  .projects__tab {
-    border: 1px solid rgba(100, 116, 139, 0.45);
-    background: rgba(2, 6, 12, 0.65);
-    color: #cbd5e1;
-    border-radius: 999px;
-    padding: 0.45rem 0.85rem;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
-    cursor: pointer;
-    transition: border-color 140ms ease, color 140ms ease, background 140ms ease;
-  }
-
-  .projects__tab:hover,
-  .projects__tab:focus-visible {
-    color: #e2e8f0;
-    border-color: rgba(103, 232, 249, 0.55);
-  }
-
-  .projects__tab.is-active {
-    color: #022c32;
-    border-color: rgba(45, 212, 191, 0.85);
-    background: linear-gradient(120deg, #5eead4, #67e8f9);
-  }
-
-  .projects__select-wrap {
-    display: none;
-  }
-
-  .projects__select {
-    width: 100%;
-    margin-top: 0.5rem;
-    border: 1px solid rgba(100, 116, 139, 0.45);
-    background: rgba(2, 6, 12, 0.8);
-    color: #e2e8f0;
-    border-radius: 0.6rem;
-    padding: 0.62rem 0.7rem;
-    font-size: 0.84rem;
-    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
-  }
-
-  .projects__category {
-    margin-top: 1.6rem;
+  .projects__section {
+    margin-top: 1.7rem;
   }
 
   .projects__category-title {
@@ -234,6 +142,13 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     letter-spacing: 0.04em;
     text-transform: uppercase;
     font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .projects__section-note {
+    margin: 0 0 1rem;
+    color: #9fb0bf;
+    font-size: 0.95rem;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   }
 
   .projects__grid {
@@ -262,6 +177,11 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
       rgba(2, 6, 12, 0.82);
   }
 
+  .project-card--planned {
+    border-style: dashed;
+    border-color: rgba(148, 163, 184, 0.45);
+  }
+
   .project-card:hover,
   .project-card:focus-within {
     transform: translateY(-3px);
@@ -276,6 +196,10 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
+  .project-card__badge--planned {
+    color: #cbd5e1;
   }
 
   .project-card__title {
@@ -350,18 +274,6 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     background: rgba(125, 211, 252, 0.2);
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   @media (min-width: 1000px) {
     .project-card--flagship {
       grid-column: span 2;
@@ -372,16 +284,6 @@ const defaultCategory = groupedProjects.Security?.length ? 'Security' : 'Monitor
     .projects__inner {
       margin: 0 auto;
       padding-right: 0;
-    }
-  }
-
-  @media (max-width: 760px) {
-    .projects__tabs {
-      display: none;
-    }
-
-    .projects__select-wrap {
-      display: block;
     }
   }
 
