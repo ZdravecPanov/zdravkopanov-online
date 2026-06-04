@@ -27,6 +27,8 @@ videos:
   - /images/mikrotik-openvpn-remote-access/validation-clip.mp4
 videoCaptions:
   - Short validation clip showing the remote-access workflow, tunnel behavior, and policy checks in action.
+videoPreviews:
+  - /images/mikrotik-openvpn-remote-access/03-vpn-traffic-and-status.png
 ---
 
 ## Overview

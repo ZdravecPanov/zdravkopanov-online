@@ -15,6 +15,7 @@ const projects = defineCollection({
     imageCaptions: z.array(z.string()).default([]),
     videos: z.array(z.string()).default([]),
     videoCaptions: z.array(z.string()).default([]),
+    videoPreviews: z.array(z.string()).default([]),
   }),
 });
 

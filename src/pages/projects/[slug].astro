@@ -66,8 +66,13 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
               <div class="project-videos__item">
                 {isDirectVideo(videoUrl) ? (
                   <a class="media-thumb media-thumb--video" href={`#vid-${index}`} aria-label="Open video">
-                    <span class="media-thumb__play" aria-hidden="true">▶</span>
-                    <span class="media-thumb__label">Open video</span>
+                    {project.data.videoPreviews?.[index] ? (
+                      <img src={project.data.videoPreviews[index]} alt="Video preview" loading="lazy" />
+                    ) : null}
+                    <span class="media-thumb__overlay" aria-hidden="true">
+                      <span class="media-thumb__play">▶</span>
+                      <span class="media-thumb__label">Open video</span>
+                    </span>
                   </a>
                 ) : (
                   <iframe
@@ -121,7 +126,7 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
             <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
             <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded video">
               <a class="media-modal__close" href="#">Close</a>
-              <video class="media-modal__video" controls preload="metadata" playsinline>
+              <video class="media-modal__video" controls preload="metadata" playsinline poster={project.data.videoPreviews?.[index]}>
                 <source src={videoUrl} />
                 Your browser does not support the video tag.
               </video>
@@ -318,8 +323,7 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
   .media-thumb--video {
     position: relative;
     min-height: 220px;
-    display: grid;
-    place-items: center;
+    display: block;
     border-radius: 0.65rem;
     border: 1px solid rgba(56, 189, 248, 0.28);
     background:
@@ -330,12 +334,33 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
     overflow: hidden;
   }
 
+  .media-thumb--video img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    opacity: 0.96;
+  }
+
   .media-thumb--video:hover,
   .media-thumb--video:focus-visible {
     border-color: rgba(125, 211, 252, 0.72);
     background:
       linear-gradient(180deg, rgba(3, 10, 22, 0.95), rgba(6, 16, 34, 0.98)),
       radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.16), transparent 36%);
+  }
+
+  .media-thumb__overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    gap: 0.45rem;
+    background: linear-gradient(180deg, rgba(2, 8, 20, 0.18), rgba(2, 8, 20, 0.46));
+    text-align: center;
   }
 
   .media-thumb__play {
@@ -349,7 +374,6 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
     color: #a5f3fc;
     font-size: 1.6rem;
     line-height: 1;
-    margin-bottom: 0.45rem;
   }
 
   .media-thumb__label {
