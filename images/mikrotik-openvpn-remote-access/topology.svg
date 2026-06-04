@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" role="img" aria-labelledby="title desc">
   <title id="title">MikroTik OpenVPN Remote Access Topology</title>
-  <desc id="desc">A clean topology showing the path from Internet through HQ and OpenVPN to a remote MikroTik router, plus monitoring visibility from Zabbix and Grafana.</desc>
+  <desc id="desc">Professional infrastructure diagram showing HQ Management Network communicating bidirectionally through an OpenVPN tunnel to a remote MikroTik router and Remote Site LAN, with Monitoring observing the tunnel and router separately, and Security Controls plus Validation Focus documented as supporting layers.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#02070d"/>
@@ -14,80 +14,103 @@
       <stop offset="0%" stop-color="#22d3ee"/>
       <stop offset="100%" stop-color="#5eead4"/>
     </linearGradient>
+    <linearGradient id="monitor" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5eead4"/>
+    </marker>
+    <marker id="monitorArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#60a5fa"/>
+    </marker>
     <style>
       .title { fill:#e2e8f0; font: 700 34px "IBM Plex Mono","JetBrains Mono",monospace; letter-spacing:.02em; }
       .subtitle { fill:#94a3b8; font: 400 18px "Inter","Segoe UI",sans-serif; }
-      .box { fill:url(#panel); stroke:rgba(45,212,191,.56); stroke-width:2.2; rx:22; ry:22; }
-      .line { fill:none; stroke:url(#accent); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
-      .dash { fill:none; stroke:#60a5fa; stroke-width:4.5; stroke-dasharray:14 10; stroke-linecap:round; }
-      .label { fill:#e2e8f0; font: 700 28px "IBM Plex Mono","JetBrains Mono",monospace; }
-      .small { fill:#9fb0bf; font: 400 18px "Inter","Segoe UI",sans-serif; }
-      .chip { fill:#071522; stroke:#0ea5b7; stroke-width:1.4; rx:999; ry:999; }
-      .chipText { fill:#67e8f9; font: 700 18px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .panel { fill:url(#panel); stroke:rgba(45,212,191,.52); stroke-width:2.2; rx:22; ry:22; }
+      .panelThin { fill:url(#panel); stroke:rgba(96,165,250,.34); stroke-width:2; rx:22; ry:22; }
+      .lane { fill:none; stroke:url(#accent); stroke-width:7; stroke-linecap:round; }
+      .laneThin { fill:none; stroke:url(#accent); stroke-width:5; stroke-linecap:round; }
+      .monitorLine { fill:none; stroke:url(#monitor); stroke-width:4; stroke-dasharray:13 10; stroke-linecap:round; }
+      .boxTitle { fill:#e2e8f0; font: 700 18px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .boxText { fill:#9fb0bf; font: 400 14px "Inter","Segoe UI",sans-serif; }
       .note { fill:#7dd3fc; font: 500 16px "Inter","Segoe UI",sans-serif; }
+      .sectionTitle { fill:#dbeafe; font: 700 20px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .sectionTitleGreen { fill:#d1fae5; font: 700 20px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .bulletBlue { fill:#bfdbfe; font: 400 15px "Inter","Segoe UI",sans-serif; }
+      .bulletGreen { fill:#bbf7d0; font: 400 15px "Inter","Segoe UI",sans-serif; }
+      .bulBlue { fill:#60a5fa; }
+      .bul { fill:#86efac; }
     </style>
   </defs>
 
-  <rect width="1400" height="760" fill="url(#bg)"/>
+  <rect width="1400" height="780" fill="url(#bg)"/>
 
   <text x="70" y="78" class="title">MikroTik OpenVPN Remote Access</text>
-  <text x="70" y="112" class="subtitle">Certificate-based HQ-to-site access, restricted management paths, and monitoring visibility</text>
+  <text x="70" y="112" class="subtitle">Secure HQ-to-site administration with monitoring-backed validation.</text>
 
-  <!-- Main path -->
-  <rect x="70" y="230" width="210" height="120" class="box"/>
-  <text x="175" y="280" text-anchor="middle" class="label">Internet</text>
-  <text x="175" y="312" text-anchor="middle" class="small">Public access</text>
+  <!-- Main traffic flow -->
+  <rect x="70" y="188" width="260" height="170" class="panel"/>
+  <text x="200" y="244" text-anchor="middle" class="boxTitle">
+    <tspan x="200" dy="0">HQ Management</tspan>
+    <tspan x="200" dy="22">Network</tspan>
+  </text>
+  <text x="200" y="295" text-anchor="middle" class="boxText">Trusted admin network</text>
+  <text x="200" y="318" text-anchor="middle" class="boxText">Controlled access</text>
+  <text x="200" y="341" text-anchor="middle" class="boxText">No public exposure</text>
 
-  <rect x="375" y="210" width="240" height="160" class="box"/>
-  <text x="495" y="263" text-anchor="middle" class="label">HQ Network</text>
-  <text x="495" y="295" text-anchor="middle" class="small">Trusted admin side</text>
-  <text x="495" y="324" text-anchor="middle" class="small">Controlled reachability</text>
+  <rect x="386" y="214" width="280" height="126" class="panel"/>
+  <text x="526" y="286" text-anchor="middle" class="boxTitle">OpenVPN Tunnel</text>
+  <text x="526" y="316" text-anchor="middle" class="boxText">Certificate authentication</text>
+  <text x="526" y="339" text-anchor="middle" class="boxText">Secure management path</text>
 
-  <rect x="700" y="210" width="250" height="160" class="box"/>
-  <text x="825" y="263" text-anchor="middle" class="label">OpenVPN Tunnel</text>
-  <text x="825" y="295" text-anchor="middle" class="small">Certificate-based auth</text>
-  <text x="825" y="324" text-anchor="middle" class="small">Restricted management path</text>
+  <rect x="718" y="188" width="292" height="170" class="panel"/>
+  <text x="864" y="244" text-anchor="middle" class="boxTitle">
+    <tspan x="864" dy="0">Remote MikroTik</tspan>
+  </text>
+  <text x="864" y="286" text-anchor="middle" class="boxText">RouterOS 7.x</text>
+  <text x="864" y="309" text-anchor="middle" class="boxText">Firewall / NAT / DHCP</text>
+  <text x="864" y="332" text-anchor="middle" class="boxText">Managed through VPN</text>
 
-  <rect x="1035" y="210" width="250" height="160" class="box"/>
-  <text x="1160" y="263" text-anchor="middle" class="label">Remote MikroTik</text>
-  <text x="1160" y="295" text-anchor="middle" class="small">RouterOS 7.x</text>
-  <text x="1160" y="324" text-anchor="middle" class="small">Firewall / NAT / DHCP</text>
+  <rect x="1068" y="214" width="262" height="126" class="panelThin"/>
+  <text x="1198" y="286" text-anchor="middle" class="boxTitle">
+    <tspan x="1198" dy="0">Remote Site</tspan>
+    <tspan x="1198" dy="22">LAN</tspan>
+  </text>
+  <text x="1198" y="325" text-anchor="middle" class="boxText">Local devices</text>
+  <text x="1198" y="348" text-anchor="middle" class="boxText">Policy-controlled access</text>
 
-  <rect x="1045" y="455" width="240" height="120" class="box"/>
-  <text x="1165" y="507" text-anchor="middle" class="label">Remote Site LAN</text>
-  <text x="1165" y="540" text-anchor="middle" class="small">Isolated user / device network</text>
+  <path d="M330 273 H386" class="lane"/>`n  <text x="358" y="280" text-anchor="middle" class="boxTitle" style="fill:#5eead4;font-size:36px;font-weight:700;">↔</text>
+  <path d="M666 273 H718" class="lane"/>`n  <text x="692" y="280" text-anchor="middle" class="boxTitle" style="fill:#5eead4;font-size:36px;font-weight:700;">↔</text>
+  <path d="M1010 273 H1068" class="laneThin" marker-end="url(#arrow)"/>
+  <path d="M1198 340 V394" class="laneThin" marker-end="url(#arrow)"/>
 
-  <!-- Monitoring -->
-  <rect x="70" y="470" width="370" height="145" class="box"/>
-  <text x="255" y="522" text-anchor="middle" class="label">Monitoring</text>
-  <text x="255" y="556" text-anchor="middle" class="small">Zabbix + Grafana</text>
-  <text x="255" y="586" text-anchor="middle" class="small">Tunnel state, service health, policy visibility</text>
+  <!-- Supporting layers -->
+  <rect x="70" y="444" width="372" height="168" class="panelThin"/>
+  <text x="226" y="496" text-anchor="middle" class="sectionTitle">Monitoring</text>
+  <text x="226" y="530" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Zabbix + Grafana</text>
+  <text x="226" y="556" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Tunnel and service visibility</text>
+  <text x="226" y="582" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Separate from traffic path</text>
 
-  <rect x="500" y="470" width="390" height="145" class="box"/>
-  <text x="695" y="522" text-anchor="middle" class="label">Operational Result</text>
-  <text x="695" y="556" text-anchor="middle" class="small">Remote access without public exposure</text>
-  <text x="695" y="586" text-anchor="middle" class="small">Restricted paths and observable health</text>
+  <rect x="486" y="444" width="360" height="168" class="panelThin"/>
+  <text x="666" y="496" text-anchor="middle" class="sectionTitleGreen">Security Controls</text>
+  <text x="556" y="530" class="bulletGreen"><tspan class="bul">•</tspan> Certificate Authentication</text>
+  <text x="556" y="556" class="bulletGreen"><tspan class="bul">•</tspan> Restricted Routing</text>
+  <text x="556" y="582" class="bulletGreen"><tspan class="bul">•</tspan> Trusted Management Networks</text>
 
-  <!-- connectors -->
-  <path d="M280 290 H375" class="line"/>
-  <path d="M615 290 H700" class="line"/>
-  <path d="M950 290 H1035" class="line"/>
-  <path d="M1160 370 V455" class="line"/>
-  <path d="M255 615 H500" class="dash"/>
-  <path d="M890 615 H1045" class="dash"/>
-  <path d="M615 615 H700 V360" class="dash"/>
+  <rect x="884" y="444" width="446" height="168" class="panelThin"/>
+  <text x="1127" y="496" text-anchor="middle" class="sectionTitle">Validation Focus</text>
+  <text x="1127" y="530" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Tunnel status</text>
+  <text x="1127" y="556" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Routing verification</text>
+  <text x="1127" y="582" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Firewall validation</text>
+  <text x="1127" y="608" text-anchor="middle" class="bulletBlue"><tspan class="bulBlue">•</tspan> Reachability testing</text>
 
-  <!-- arrowheads -->
-  <polygon points="366,282 384,290 366,298" fill="#5eead4"/>
-  <polygon points="691,282 709,290 691,298" fill="#5eead4"/>
-  <polygon points="1026,282 1044,290 1026,298" fill="#5eead4"/>
-  <polygon points="1151,443 1160,459 1169,443" fill="#5eead4"/>
+  <!-- Monitoring links -->
+  <path d="M256 444 C256 408, 466 408, 526 340" class="monitorLine" marker-end="url(#monitorArrow)"/>
+  <path d="M438 478 C595 420, 770 420, 864 340" class="monitorLine" marker-end="url(#monitorArrow)"/>
 
-  <!-- monitoring chips -->
-  <rect x="120" y="660" width="150" height="34" class="chip"/>
-  <text x="195" y="684" text-anchor="middle" class="chipText">Zabbix</text>
-  <rect x="290" y="660" width="154" height="34" class="chip"/>
-  <text x="367" y="684" text-anchor="middle" class="chipText">Grafana</text>
-
-  <text x="70" y="726" class="note">Public diagram omits credentials, exact internal addressing, and secret deployment details.</text>
+  <text x="70" y="672" class="note">Public diagram omits credentials, certificates, internal addressing, and deployment secrets.</text>
 </svg>
+
+
+
