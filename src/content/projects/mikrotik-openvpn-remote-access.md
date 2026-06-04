@@ -29,119 +29,97 @@ videoCaptions:
   - Short validation clip showing the remote-access workflow, tunnel behavior, and policy checks in action.
 ---
 
-## Project Overview
-Designed and deployed a secure MikroTik OpenVPN remote-access solution connecting a remote site to HQ using certificate-based authentication, restricted routing, and hardened firewall policies.
+## Overview
+Designed and deployed a secure MikroTik OpenVPN solution connecting a remote site to HQ using certificate-based authentication, restricted routing, and hardened firewall policies.
 
-The goal was to keep the site reachable for administration while avoiding public exposure and keeping the remote LAN isolated from unrestricted HQ access.
+The objective was to enable secure remote administration while preventing public exposure of management services and maintaining strict access boundaries between networks.
+
+---
 
 ## Key Achievements
-- Secure HQ-to-site connectivity
-- Certificate-based VPN authentication
-- Restricted management access
-- Controlled routing and NAT policies
-- Repeatable deployment workflow
-- Monitoring-backed validation with Zabbix and Grafana
 
-## Why This Exists
-The site needed a controlled way to join HQ for administration, troubleshooting, and limited inter-site traffic while keeping the remote LAN isolated from unrestricted access to the HQ LAN.
+* Secure HQ-to-site VPN connectivity
+* Certificate-based authentication
+* Restricted management access
+* Controlled routing and NAT policies
+* Repeatable deployment workflow
+* Monitoring integration with Zabbix and Grafana
 
-## Deployment Model
-The setup follows a simple but practical sequence:
+---
 
-1. A minimal bootstrap configuration brings the router up with WAN connectivity, time synchronization, DNS, and the initial VPN client.
-2. Certificates are imported and used to establish authenticated OpenVPN connectivity back to HQ.
-3. The final configuration is applied once the tunnel is up and the site is reachable remotely.
+## Implementation Highlights
 
-This approach keeps the first contact small and recoverable, which is important when the router is installed at a remote location.
+* Designed the network topology and trust model
+* Configured MikroTik RouterOS devices
+* Implemented OpenVPN connectivity
+* Created firewall and NAT policies
+* Restricted management services to trusted networks
+* Integrated monitoring and validation workflows
 
-## Topology
-The topology is summarized in the diagram below. It shows the tunnel path, the trust boundaries, and the monitoring layer used to validate the deployment after configuration changes.
+---
+
+## Technologies
+
+* MikroTik RouterOS 7.x
+* OpenVPN
+* Certificate-based Authentication
+* Firewall & NAT
+* DHCP / DNS / NTP
+* Zabbix
+* Grafana
+
+---
+
+## Architecture
+
+*Topology diagram displayed below.*
+
+The deployment uses a two-stage rollout process:
+
+1. Bootstrap configuration establishes WAN access and VPN connectivity.
+2. Full configuration is applied after secure remote access is verified.
+
+This minimizes deployment risk and simplifies recovery for remote installations.
 
 ![MikroTik OpenVPN topology diagram](/images/mikrotik-openvpn-remote-access/topology.svg)
 
-## What Was Built
-- Remote site router initialization workflow
-- WAN connectivity with automatic addressing
-- Local LAN bridge and DHCP service for the remote site
-- OpenVPN-based tunnel back to HQ
-- Certificate-backed authentication for the tunnel
-- Firewall rules that separate router management, VPN management, and general forwarding traffic
-- NAT rules for internet access and controlled HQ-to-site reachability
-- Route control for the HQ side and the remote site
-- Restricted management access to trusted administrative networks
+---
 
-## Security and Access Model
-The public write-up intentionally omits any sensitive values such as:
+## Security & Validation
 
-- passwords
-- certificate material
-- exact internal addresses that would help target the environment
-- any operational secrets used during deployment
+The solution uses certificate-based authentication, explicit firewall policies, and least-privilege access controls.
 
-At a high level, the security model uses dual-sided VPN authentication, explicit firewall policy, restricted management services, segmented site LAN and VPN transit logic, and least-privilege access for HQ administration.
+Validation included:
 
-## Traffic Policy
-The traffic rules were designed to keep behavior predictable:
+* VPN tunnel establishment
+* Route verification
+* Firewall policy testing
+* Administrative path validation
+* Monitoring visibility checks
 
-- HQ management traffic can reach the remote site through the tunnel
-- the remote site can use the internet through its own WAN path
-- the remote site does not get unrestricted access into the HQ LAN
-- management interfaces are not left open to the broader internet
+Sensitive information such as credentials, certificates, internal addressing, and full configurations has been intentionally excluded from this public write-up.
 
-This keeps the VPN useful for operations without turning it into a general-purpose trust extension.
+---
 
-## Validation and Operational Checks
-The deployment was validated by checking:
+## Results
 
-- tunnel establishment state
-- route presence on the remote router
-- active VPN session visibility on the HQ side
-- reachability of allowed administrative paths
-- firewall behavior for allowed versus blocked traffic
-- management service restrictions
+* VPN tunnel established successfully
+* Secure remote administration enabled
+* Management access limited to trusted networks
+* Remote LAN isolated from unrestricted HQ access
+* Repeatable deployment model for future sites
+* Continuous visibility through Zabbix and Grafana
 
-These checks matter more than a single connected status, because a tunnel can be up while the routing or policy is still wrong.
+---
 
-## Monitoring
-The remote-access path was also considered from an operations standpoint. Zabbix and Grafana are the monitoring layer that make the tunnel and service behavior visible without exposing sensitive details.
+## Evidence
 
-In practice, that means the portfolio can show:
+Screenshots and demonstration clips show:
 
-- tunnel reachability and session state
-- router-side service health
-- whether administrative paths are still restricted as intended
-- whether the access pattern remains stable after changes
-
-Grafana is the dashboard layer for at-a-glance visibility, while Zabbix is the system used for host and service monitoring signals. Together, they turn the VPN setup from "configured" into something that can be observed and trusted during daily use.
-
-## Result
-- VPN tunnel established successfully
-- Remote management enabled without public exposure
-- Administrative access limited to trusted networks
-- Remote LAN kept isolated from unrestricted HQ access
-- Deployment remains repeatable for future sites
-- Zabbix and Grafana can be used to validate ongoing tunnel and service health
-
-## What Was Deliberately Omitted
-For safety, this portfolio page does not publish:
-
-- the full router config
-- bootstrap scripts
-- certificate files
-- VPN credentials
-- secret transport details
-
-Those artifacts exist in the working infrastructure notes, but they are not part of the public-facing project page.
-
-## Evidence Media
-The included screenshots and clip cover the most important validation points without exposing sensitive values:
-
-- tunnel reachability and latency
-- security and service health
-- VPN traffic and interface status
-- a short validation flow for the remote-access path
-
-## Outcome
-This project shows the network side of the portfolio in a practical way: not just that a tunnel exists, but that it was designed, hardened, and validated with operational boundaries in mind.
+* VPN tunnel status
+* Routing and firewall validation
+* Zabbix monitoring
+* Grafana dashboards
+* End-to-end remote administration workflow
 
 
