@@ -65,10 +65,10 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
             {project.data.videos.map((videoUrl, index) => (
               <div class="project-videos__item">
                 {isDirectVideo(videoUrl) ? (
-                  <video class="project-video-player" controls preload="metadata" playsinline>
-                    <source src={videoUrl} />
-                    Your browser does not support the video tag.
-                  </video>
+                  <a class="media-thumb media-thumb--video" href={`#vid-${index}`} aria-label="Open video">
+                    <span class="media-thumb__play" aria-hidden="true">▶</span>
+                    <span class="media-thumb__label">Open video</span>
+                  </a>
                 ) : (
                   <iframe
                     src={videoUrl}
@@ -113,6 +113,24 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
             <img src={img} alt="Expanded screenshot" loading="lazy" />
           </div>
         </div>
+      ))}
+
+      {project.data.videos && project.data.videos.map((videoUrl, index) => (
+        isDirectVideo(videoUrl) ? (
+          <div class="media-modal" id={`vid-${index}`}>
+            <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
+            <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded video">
+              <a class="media-modal__close" href="#">Close</a>
+              <video class="media-modal__video" controls preload="metadata" playsinline>
+                <source src={videoUrl} />
+                Your browser does not support the video tag.
+              </video>
+              {project.data.videoCaptions?.[index] && (
+                <p class="media-caption">{project.data.videoCaptions[index]}</p>
+              )}
+            </div>
+          </div>
+        ) : null
       ))}
 
       <ul class="project-page__tags" aria-label="Tech stack">
@@ -297,6 +315,52 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
     display: block;
   }
 
+  .media-thumb--video {
+    position: relative;
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+    border-radius: 0.65rem;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    background:
+      linear-gradient(180deg, rgba(2, 8, 20, 0.9), rgba(6, 12, 26, 0.95)),
+      radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.08), transparent 35%);
+    color: #ecfeff;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .media-thumb--video:hover,
+  .media-thumb--video:focus-visible {
+    border-color: rgba(125, 211, 252, 0.72);
+    background:
+      linear-gradient(180deg, rgba(3, 10, 22, 0.95), rgba(6, 16, 34, 0.98)),
+      radial-gradient(circle at 50% 40%, rgba(34, 211, 238, 0.16), transparent 36%);
+  }
+
+  .media-thumb__play {
+    display: grid;
+    place-items: center;
+    width: 3.8rem;
+    height: 3.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(125, 211, 252, 0.45);
+    background: rgba(6, 182, 212, 0.18);
+    color: #a5f3fc;
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-bottom: 0.45rem;
+  }
+
+  .media-thumb__label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
+  }
+
   .project-gallery img {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -449,6 +513,13 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
     border-radius: 0.75rem;
     border: 1px solid rgba(255,255,255,0.08);
     background: #000;
+  }
+
+  .media-modal__video {
+    display: block;
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
   }
 
   .project-page__tags {
