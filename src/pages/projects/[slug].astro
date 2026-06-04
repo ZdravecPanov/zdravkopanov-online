@@ -64,19 +64,8 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
           <div class="project-videos">
             {project.data.videos.map((videoUrl, index) => (
               <div class="project-videos__item">
-                {enableLightbox ? (
-                  <a class="media-thumb media-thumb--video" href={`#vid-${index}`} aria-label="Open video">
-                    {isDirectVideo(videoUrl) ? (
-                      <video muted playsinline preload="metadata">
-                        <source src={videoUrl} />
-                      </video>
-                    ) : (
-                      <span class="project-video__placeholder">Open video</span>
-                    )}
-                    <span class="video-play" aria-hidden="true"></span>
-                  </a>
-                ) : isDirectVideo(videoUrl) ? (
-                  <video controls preload="metadata">
+                {isDirectVideo(videoUrl) ? (
+                  <video class="project-video-player" controls preload="metadata" playsinline>
                     <source src={videoUrl} />
                     Your browser does not support the video tag.
                   </video>
@@ -122,29 +111,6 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
               </>
             )}
             <img src={img} alt="Expanded screenshot" loading="lazy" />
-          </div>
-        </div>
-      ))}
-
-      {enableLightbox && project.data.videos && project.data.videos.map((videoUrl, index) => (
-        <div class="media-modal" id={`vid-${index}`}>
-          <a class="media-modal__backdrop" href="#" aria-label="Close"></a>
-          <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded video">
-            <a class="media-modal__close" href="#">Close</a>
-            {isDirectVideo(videoUrl) ? (
-              <video controls autoplay>
-                <source src={videoUrl} />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <iframe
-                src={videoUrl}
-                title="Expanded video"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            )}
           </div>
         </div>
       ))}
@@ -381,48 +347,21 @@ const enableLightbox = Boolean((project.data.images && project.data.images.lengt
     background: #000;
   }
 
-  .project-videos .media-thumb video {
+  .project-video-player,
+  .project-videos iframe {
+    width: 100%;
+    min-height: 240px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.65rem;
+    background: #000;
+  }
+
+  .project-video-player {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center top;
     background: rgba(2, 8, 20, 0.75);
     padding: 0.65rem;
-  }
-
-  .video-play {
-    position: absolute;
-    inset: auto auto 0.6rem 0.6rem;
-    width: 1.8rem;
-    height: 1.8rem;
-    border-radius: 999px;
-    background: rgba(2, 8, 20, 0.82);
-    border: 1px solid rgba(125, 211, 252, 0.4);
-    display: grid;
-    place-items: center;
-  }
-
-  .video-play::before {
-    content: "";
-    width: 0;
-    height: 0;
-    border-top: 0.32rem solid transparent;
-    border-bottom: 0.32rem solid transparent;
-    border-left: 0.5rem solid #67e8f9;
-    margin-left: 0.08rem;
-  }
-
-  .project-video__placeholder {
-    display: grid;
-    place-items: center;
-    min-height: 220px;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 0.65rem;
-    color: #cbd5e1;
-    background: rgba(2, 8, 20, 0.72);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-size: 0.8rem;
-    font-family: "IBM Plex Mono", "JetBrains Mono", "Fira Mono", Consolas, monospace;
   }
 
   .media-modal {
