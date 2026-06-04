@@ -7,9 +7,17 @@ const completedSlugs = [
   'cyberops-portal-securitypulse',
   'prometheus-grafana-monitoring',
   'windows-security-monitoring',
+  'zabbix-grafana-monitoring',
+  'grafana-html-mail-relay',
+  'service-alert-centralization',
 ];
 
-const ongoingSlugs = ['windows-server-management'];
+const ongoingSlugs = [
+  'mikrotik-openvpn-remote-access',
+  'windows-server-management',
+  'powershell-automation',
+  'vmware-environment-setup',
+];
 
 const bySlug = new Map(projects.map((project) => [project.slug, project]));
 
@@ -30,7 +38,8 @@ const plannedProjects = projects
     <h2 class="projects__title">Projects</h2>
 
     <div class="projects__section">
-      <h3 class="projects__category-title">Completed</h3>
+      <h3 class="projects__category-title">Active Projects</h3>
+      <p class="projects__section-note">Production-like and actively maintained portfolio projects.</p>
       <div class="projects__grid">
         {completedProjects.map((project) => {
           const isFlagship = project.slug === 'cyberops-portal-securitypulse';
@@ -54,6 +63,7 @@ const plannedProjects = projects
 
     <div class="projects__section">
       <h3 class="projects__category-title">Ongoing</h3>
+      <p class="projects__section-note">Currently in progress and being expanded.</p>
       <div class="projects__grid">
         {ongoingProjects.map((project) => (
           <article class="project-card">
@@ -72,8 +82,8 @@ const plannedProjects = projects
     </div>
 
     <div class="projects__section">
-      <h3 class="projects__category-title">Planned</h3>
-      <p class="projects__section-note">Предстои да бъдат направени.</p>
+      <h3 class="projects__category-title">Planned (Not Started Yet)</h3>
+      <p class="projects__section-note">Planned roadmap items for upcoming implementation.</p>
       <div class="projects__grid">
         {plannedProjects.map((project) => (
           <article class="project-card project-card--planned">

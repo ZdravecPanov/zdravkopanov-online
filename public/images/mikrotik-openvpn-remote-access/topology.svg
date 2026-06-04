@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">MikroTik OpenVPN Remote Access Topology</title>
+  <desc id="desc">A clean topology showing the path from Internet through HQ and OpenVPN to a remote MikroTik router, plus monitoring visibility from Zabbix and Grafana.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#02070d"/>
+      <stop offset="100%" stop-color="#07111b"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#081724"/>
+      <stop offset="100%" stop-color="#050b13"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#5eead4"/>
+    </linearGradient>
+    <style>
+      .title { fill:#e2e8f0; font: 700 34px "IBM Plex Mono","JetBrains Mono",monospace; letter-spacing:.02em; }
+      .subtitle { fill:#94a3b8; font: 400 18px "Inter","Segoe UI",sans-serif; }
+      .box { fill:url(#panel); stroke:rgba(45,212,191,.56); stroke-width:2.2; rx:22; ry:22; }
+      .line { fill:none; stroke:url(#accent); stroke-width:6; stroke-linecap:round; stroke-linejoin:round; }
+      .dash { fill:none; stroke:#60a5fa; stroke-width:4.5; stroke-dasharray:14 10; stroke-linecap:round; }
+      .label { fill:#e2e8f0; font: 700 28px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .small { fill:#9fb0bf; font: 400 18px "Inter","Segoe UI",sans-serif; }
+      .chip { fill:#071522; stroke:#0ea5b7; stroke-width:1.4; rx:999; ry:999; }
+      .chipText { fill:#67e8f9; font: 700 18px "IBM Plex Mono","JetBrains Mono",monospace; }
+      .note { fill:#7dd3fc; font: 500 16px "Inter","Segoe UI",sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="760" fill="url(#bg)"/>
+
+  <text x="70" y="78" class="title">MikroTik OpenVPN Remote Access</text>
+  <text x="70" y="112" class="subtitle">Certificate-based HQ-to-site access, restricted management paths, and monitoring visibility</text>
+
+  <!-- Main path -->
+  <rect x="70" y="230" width="210" height="120" class="box"/>
+  <text x="175" y="280" text-anchor="middle" class="label">Internet</text>
+  <text x="175" y="312" text-anchor="middle" class="small">Public access</text>
+
+  <rect x="375" y="210" width="240" height="160" class="box"/>
+  <text x="495" y="263" text-anchor="middle" class="label">HQ Network</text>
+  <text x="495" y="295" text-anchor="middle" class="small">Trusted admin side</text>
+  <text x="495" y="324" text-anchor="middle" class="small">Controlled reachability</text>
+
+  <rect x="700" y="210" width="250" height="160" class="box"/>
+  <text x="825" y="263" text-anchor="middle" class="label">OpenVPN Tunnel</text>
+  <text x="825" y="295" text-anchor="middle" class="small">Certificate-based auth</text>
+  <text x="825" y="324" text-anchor="middle" class="small">Restricted management path</text>
+
+  <rect x="1035" y="210" width="250" height="160" class="box"/>
+  <text x="1160" y="263" text-anchor="middle" class="label">Remote MikroTik</text>
+  <text x="1160" y="295" text-anchor="middle" class="small">RouterOS 7.x</text>
+  <text x="1160" y="324" text-anchor="middle" class="small">Firewall / NAT / DHCP</text>
+
+  <rect x="1045" y="455" width="240" height="120" class="box"/>
+  <text x="1165" y="507" text-anchor="middle" class="label">Remote Site LAN</text>
+  <text x="1165" y="540" text-anchor="middle" class="small">Isolated user / device network</text>
+
+  <!-- Monitoring -->
+  <rect x="70" y="470" width="370" height="145" class="box"/>
+  <text x="255" y="522" text-anchor="middle" class="label">Monitoring</text>
+  <text x="255" y="556" text-anchor="middle" class="small">Zabbix + Grafana</text>
+  <text x="255" y="586" text-anchor="middle" class="small">Tunnel state, service health, policy visibility</text>
+
+  <rect x="500" y="470" width="390" height="145" class="box"/>
+  <text x="695" y="522" text-anchor="middle" class="label">Operational Result</text>
+  <text x="695" y="556" text-anchor="middle" class="small">Remote access without public exposure</text>
+  <text x="695" y="586" text-anchor="middle" class="small">Restricted paths and observable health</text>
+
+  <!-- connectors -->
+  <path d="M280 290 H375" class="line"/>
+  <path d="M615 290 H700" class="line"/>
+  <path d="M950 290 H1035" class="line"/>
+  <path d="M1160 370 V455" class="line"/>
+  <path d="M255 615 H500" class="dash"/>
+  <path d="M890 615 H1045" class="dash"/>
+  <path d="M615 615 H700 V360" class="dash"/>
+
+  <!-- arrowheads -->
+  <polygon points="366,282 384,290 366,298" fill="#5eead4"/>
+  <polygon points="691,282 709,290 691,298" fill="#5eead4"/>
+  <polygon points="1026,282 1044,290 1026,298" fill="#5eead4"/>
+  <polygon points="1151,443 1160,459 1169,443" fill="#5eead4"/>
+
+  <!-- monitoring chips -->
+  <rect x="120" y="660" width="150" height="34" class="chip"/>
+  <text x="195" y="684" text-anchor="middle" class="chipText">Zabbix</text>
+  <rect x="290" y="660" width="154" height="34" class="chip"/>
+  <text x="367" y="684" text-anchor="middle" class="chipText">Grafana</text>
+
+  <text x="70" y="726" class="note">Public diagram omits credentials, exact internal addressing, and secret deployment details.</text>
+</svg>
