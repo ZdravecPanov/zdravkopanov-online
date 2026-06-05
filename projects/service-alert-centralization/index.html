@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="shortcut icon" href="/favicon.svg?v=3"><meta name="generator" content="Astro v5.18.0"><title>Zdravko Panov | Portfolio</title><link rel="stylesheet" href="/_astro/_slug_.5FCpH59o.css">
+<style>.navbar-shell[data-astro-cid-5blmo7yk]{position:fixed;top:0;left:0;width:100%;z-index:50;backdrop-filter:blur(16px);background:linear-gradient(120deg,#030712d1,#030a12a6);border-bottom:1px solid rgba(45,212,191,.2)}.navbar[data-astro-cid-5blmo7yk]{width:100%;max-width:none;margin:0;padding:.85rem 1.5rem .85rem calc(clamp(1rem,7vw,6rem) + 1.5rem);display:flex;align-items:center;justify-content:flex-start;gap:1rem;color:#e2e8f0;position:relative}.navbar__logo[data-astro-cid-5blmo7yk]{margin-right:auto;text-decoration:none;color:#67e8f9;font-size:1rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-family:IBM Plex Mono,JetBrains Mono,Fira Mono,Consolas,monospace}.navbar__menu[data-astro-cid-5blmo7yk]{margin:0 0 0 auto;padding:0;list-style:none;display:flex;gap:.5rem}.navbar__menu[data-astro-cid-5blmo7yk] a[data-astro-cid-5blmo7yk]{color:#e2e8f0;text-decoration:none;font-size:.9rem;padding:.5rem .85rem;border-radius:.5rem;border:1px solid transparent;transition:border-color .12s ease,transform .12s ease,color .12s ease;font-family:IBM Plex Mono,JetBrains Mono,Fira Mono,Consolas,monospace;text-transform:uppercase;letter-spacing:.03em}.navbar__menu[data-astro-cid-5blmo7yk] a[data-astro-cid-5blmo7yk]:hover,.navbar__menu[data-astro-cid-5blmo7yk] a[data-astro-cid-5blmo7yk]:focus-visible{color:#5eead4;border-color:#5eead466;transform:translateY(-1px)}.navbar__toggle[data-astro-cid-5blmo7yk]{display:none;border:1px solid rgba(148,163,184,.45);background:#0f172a99;width:2.5rem;height:2.5rem;border-radius:.5rem;padding:.55rem .6rem;color:inherit;gap:.22rem;flex-direction:column;justify-content:center;align-items:center}.navbar__toggle[data-astro-cid-5blmo7yk] span[data-astro-cid-5blmo7yk]{display:block;width:1.2rem;height:2px;background:#e2e8f0;border-radius:999px}@media(max-width:980px){.navbar[data-astro-cid-5blmo7yk]{padding:.75rem 1rem}}@media(max-width:780px){.navbar__toggle[data-astro-cid-5blmo7yk]{display:inline-flex}.navbar__menu[data-astro-cid-5blmo7yk]{position:absolute;top:100%;left:.75rem;right:.75rem;background:#02060cf0;border:1px solid rgba(45,212,191,.2);border-radius:.75rem;padding:.55rem;display:none;flex-direction:column;gap:.3rem;backdrop-filter:blur(8px)}.navbar__menu[data-astro-cid-5blmo7yk] li[data-astro-cid-5blmo7yk]{width:100%}.navbar__menu[data-astro-cid-5blmo7yk] a[data-astro-cid-5blmo7yk]{display:block;padding:.68rem .8rem}.navbar__menu[data-astro-cid-5blmo7yk].is-open{display:flex}}*{box-sizing:border-box}html{width:100%}body{margin:0;padding:0;width:100%;min-height:100vh;padding-top:4.3rem;background:#02070d}.quick-nav[data-astro-cid-sckkx6r4]{position:fixed;left:auto!important;top:5.1rem!important;right:1rem!important;bottom:auto!important;z-index:40;display:flex;gap:.45rem}.quick-nav__btn[data-astro-cid-sckkx6r4]{border:1px solid rgba(56,189,248,.35);background:#020814d6;color:#dbeafe;text-decoration:none;border-radius:.55rem;padding:.5rem .7rem;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;font-family:IBM Plex Mono,JetBrains Mono,Fira Mono,Consolas,monospace;cursor:pointer;backdrop-filter:blur(8px)}.quick-nav__btn[data-astro-cid-sckkx6r4]:hover,.quick-nav__btn[data-astro-cid-sckkx6r4]:focus-visible{border-color:#67e8f9cc;color:#ecfeff}@media(max-width:640px){.quick-nav[data-astro-cid-sckkx6r4]{left:auto!important;top:4.9rem!important;right:.7rem!important;bottom:auto!important}.quick-nav__btn[data-astro-cid-sckkx6r4]{padding:.45rem .62rem;font-size:.68rem}}
+</style></head> <body data-astro-cid-sckkx6r4> <header class="navbar-shell" data-astro-cid-5blmo7yk> <nav class="navbar" aria-label="Primary" data-astro-cid-5blmo7yk> <a class="navbar__logo" href="/" data-astro-cid-5blmo7yk>Built to Monitor. Driven to Maintain.</a> <button class="navbar__toggle" aria-label="Toggle navigation" aria-expanded="false" data-astro-cid-5blmo7yk> <span data-astro-cid-5blmo7yk></span> <span data-astro-cid-5blmo7yk></span> <span data-astro-cid-5blmo7yk></span> </button> <ul class="navbar__menu" data-astro-cid-5blmo7yk> <li data-astro-cid-5blmo7yk><a href="/" data-astro-cid-5blmo7yk>Home</a></li> <li data-astro-cid-5blmo7yk><a href="/projects/" data-astro-cid-5blmo7yk>Projects</a></li> <li data-astro-cid-5blmo7yk><a href="https://www.linkedin.com/in/zdravko-panov" target="_blank" rel="noopener noreferrer" data-astro-cid-5blmo7yk>LinkedIn</a></li> </ul> </nav> </header> <script>
+  const toggle = document.querySelector('.navbar__toggle');
+  const menu = document.querySelector('.navbar__menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+</script>   <main class="project-page" data-astro-cid-ovxcmftc> <section class="project-page__inner" data-astro-cid-ovxcmftc> <p class="project-page__eyebrow" data-astro-cid-ovxcmftc>Project</p>  <h1 class="project-page__title" data-astro-cid-ovxcmftc>Service Alert Centralization (Grafana)</h1> <p class="project-page__description" data-astro-cid-ovxcmftc>Centralized multi-service health alerting in Grafana with provisioned rules, webhook routing, and validated delivery for core infrastructure services.</p> <article class="project-page__content" data-astro-cid-ovxcmftc> <h2 id="project-overview">Project Overview</h2>
+<p>This project centralized service-health alerting in Grafana so core infrastructure alerts follow one clear path and one consistent notification format.</p>
+<p>The implementation moved from fragmented checks to provisioned alert rules and explicit webhook routing.</p>
+<h2 id="service-coverage">Service Coverage</h2>
+<p>Rules were provisioned for core services such as:</p>
+<ul>
+<li>Grafana</li>
+<li>Prometheus</li>
+<li>Zabbix server</li>
+<li>Apache</li>
+<li>MariaDB</li>
+<li>Mail relay service</li>
+<li>Blackbox exporter</li>
+</ul>
+<h2 id="what-was-improved">What Was Improved</h2>
+<ul>
+<li>File-based alert rule provisioning for repeatable deployments</li>
+<li>Explicit receiver routing for service-alert contact points</li>
+<li>Token-validated webhook delivery behavior</li>
+<li>Better troubleshooting flow when datasource or dependency issues occur</li>
+</ul>
+<h2 id="real-operational-outcomes">Real Operational Outcomes</h2>
+<ul>
+<li>Service failures trigger consistent alert delivery through the relay pipeline</li>
+<li>Faster detection of dependency outages (for example local database/frontend failures)</li>
+<li>Better incident signal quality through centralized policy and message handling</li>
+</ul> </article> <div class="project-gallery" data-astro-cid-ovxcmftc> <div class="project-gallery__item" data-astro-cid-ovxcmftc> <a class="media-thumb" href="#img-0" aria-label="Open screenshot" data-astro-cid-ovxcmftc> <img src="/images/Windows%20Security%20Monitoring%20Dashboard/Screenshot%202026-03-30%20152719.png" alt="Project screenshot" loading="lazy" data-astro-cid-ovxcmftc> </a> <p class="media-caption" data-astro-cid-ovxcmftc>Service and infrastructure alert context used for centralized rule validation.</p> </div> </div>  <div class="media-modal" id="img-0" data-astro-cid-ovxcmftc> <a class="media-modal__backdrop" href="#" aria-label="Close" data-astro-cid-ovxcmftc></a> <div class="media-modal__dialog" role="dialog" aria-modal="true" aria-label="Expanded screenshot" data-astro-cid-ovxcmftc> <a class="media-modal__close" href="#" data-astro-cid-ovxcmftc>Close</a>  <img src="/images/Windows%20Security%20Monitoring%20Dashboard/Screenshot%202026-03-30%20152719.png" alt="Expanded screenshot" loading="lazy" data-astro-cid-ovxcmftc> </div> </div>  <ul class="project-page__tags" aria-label="Tech stack" data-astro-cid-ovxcmftc> <li data-astro-cid-ovxcmftc>Grafana Alerting</li><li data-astro-cid-ovxcmftc>Zabbix</li><li data-astro-cid-ovxcmftc>Prometheus</li><li data-astro-cid-ovxcmftc>Webhook Contact Points</li><li data-astro-cid-ovxcmftc>YAML Provisioning</li><li data-astro-cid-ovxcmftc>Linux Services</li> </ul>  </section> <script>
+      (() => {
+        const isMediaHash = (hash) => /^#(img|vid)-\d+$/.test(hash);
+
+        const closeModal = () => {
+          if (!isMediaHash(window.location.hash)) return;
+          const x = window.scrollX;
+          const y = window.scrollY;
+          window.location.hash = '';
+          if (history.replaceState) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
+          window.scrollTo(x, y);
+        };
+
+        const handleEscape = (event) => {
+          const isEscape = event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27;
+          if (!isEscape) return;
+          closeModal();
+        };
+
+
+        const handleArrowNavigation = (event) => {
+          if (!isMediaHash(window.location.hash)) return;
+          const match = window.location.hash.match(/^#img-(\d+)$/);
+          if (!match) return;
+
+          const totalImages = document.querySelectorAll('.media-modal[id^="img-"]').length;
+          if (totalImages < 2) return;
+
+          const currentIndex = Number(match[1]);
+          if (Number.isNaN(currentIndex)) return;
+
+          if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            const nextIndex = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+            window.location.hash = `img-${nextIndex}`;
+          }
+
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            const prevIndex = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+            window.location.hash = `img-${prevIndex}`;
+          }
+        };
+        window.addEventListener('keydown', handleEscape, true);
+        window.addEventListener('keyup', handleEscape, true);
+        document.addEventListener('keydown', handleEscape, true);
+        window.addEventListener('keydown', handleArrowNavigation, true);
+        document.addEventListener('keydown', handleArrowNavigation, true);
+      })();
+    </script> </main>  <div class="quick-nav" aria-label="Quick navigation" data-astro-cid-sckkx6r4> <a class="quick-nav__btn" href="/" data-astro-cid-sckkx6r4>Home</a> <button class="quick-nav__btn" type="button" data-back-btn data-astro-cid-sckkx6r4>Back</button> </div> <script>
+			(() => {
+				const backBtn = document.querySelector('[data-back-btn]');
+				if (!backBtn) return;
+
+				backBtn.addEventListener('click', () => {
+					if (window.history.length > 1) {
+						window.history.back();
+					} else {
+						window.location.href = '/';
+					}
+				});
+			})();
+		</script> </body> </html>  
